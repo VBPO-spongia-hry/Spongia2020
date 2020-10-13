@@ -5,7 +5,7 @@ git clone https://github.com/Stanko2/Spongia2020.git
 ```
 Ak nahrat tvoje zmeny pouzi
 ```bash
-git commit -m "Sprava co som zmenil"
+git commit -am "Sprava co som zmenil"
 git push
 ```
 Ak aktualizovat - robit vzdy pred tym ako zacnes nieco robit, inak budu merge conflicty
