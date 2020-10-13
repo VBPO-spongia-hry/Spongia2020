@@ -16,7 +16,7 @@ git pull origin master
 ```
 ## GUI
 1. Vygeneruj a pridaj si do GitHub uctu ssh kluce
-navod najdes [tu](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+ - navod najdes [tu](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 2. Nainicializuj si projekt a spusti v unity (normalne otvoris scenu)
 ```bash
 git clone git@github.com:{tvoje meno v GitHube}/Spongia2020.git
