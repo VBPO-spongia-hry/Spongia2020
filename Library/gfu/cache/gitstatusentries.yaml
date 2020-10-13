@@ -13,15 +13,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 6
-  lastUpdatedAtString: 2020-10-13T11:42:12.382+02:00
+  lastUpdatedAtString: 2020-10-13T11:54:55.723+02:00
   initializedAtString: 2020-10-13T11:11:46.145+02:00
   entries:
-  - path: .gitignore
-    fullPath: /home/stanko/Games/Spongia 2020/.gitignore
-    projectPath: .gitignore
-    originalPath: 
-    indexStatus: 1
-    workTreeStatus: 1
   - path: Library/gfu/cache/branches.yaml
     fullPath: /home/stanko/Games/Spongia 2020/Library/gfu/cache/branches.yaml
     projectPath: Library/gfu/cache/branches.yaml
