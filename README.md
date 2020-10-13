@@ -1,5 +1,7 @@
 # Spongia2020
-Tu sa daju uploadovat vsetky veci a obrazky co spravite, ak si chces projekt stiahnut a naiinicializovat pouzi 
+Tu sa daju uploadovat vsetky veci a obrazky co spravite
+## Prikazy
+Ak si chces projekt stiahnut a naiinicializovat pouzi 
 ```bash
 git clone https://github.com/Stanko2/Spongia2020.git
 ```
