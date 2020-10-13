@@ -14,3 +14,11 @@ Ak aktualizovat - robit vzdy pred tym ako zacnes nieco robit, inak budu merge co
 ```bash
 git pull origin master
 ```
+## GUI
+1. Nainicializuj si projekt a spusti v unity (normalne otvoris scenu)
+```bash
+git clone git@github.com:{tvoje meno v GitHube}/Spongia2020.git
+```
+2. Otvoris Window > GitHub, ak to tam nie je ides do Asset Store a stiahnes
+3. V rohu mas sign in - prihlasis sa do GitHub uctu
+4. V okne Github vies robit operacie push, commit, pull, aj si pozriet historiu
