@@ -10,5 +10,5 @@ git push
 ```
 Ak aktualizovat - robit vzdy pred tym ako zacnes nieco robit, inak budu merge conflicty
 ```bash
-git pull
+git pull origin master
 ```
