@@ -15,6 +15,11 @@ public class DialogueManager : MonoBehaviour
     public Animator dialogueAnimator;
     private int _character1Index = -1;
     private int _character2Index = -1;
+    private static readonly int Skip = Animator.StringToHash("Skip");
+    private static readonly int Next = Animator.StringToHash("Next");
+    private static readonly int Isfirst = Animator.StringToHash("Isfirst");
+    private static readonly int Viewing = Animator.StringToHash("Viewing");
+    private static readonly int DialogueStart = Animator.StringToHash("DialogueStart");
 
     private void OnEnable()
     {
@@ -51,22 +56,22 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator Begin(Dialogue dialogue)
     {
-        dialogueAnimator.SetTrigger("DialogueStart");
-        dialogueAnimator.SetBool("Viewing",true);
+        dialogueAnimator.SetTrigger(DialogueStart);
+        dialogueAnimator.SetBool(Viewing,true);
         dialogue.Reset();
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < dialogue.messages.Length; i++)
         {
             yield return ShowMessage(dialogue.ShowNext());
         }
-        dialogueAnimator.SetBool("Viewing", false);
+        dialogueAnimator.SetBool(Viewing, false);
     }
 
     private IEnumerator ShowMessage(Message msg)
     {
         Text updating = msg.characterIndex == _character1Index ? bubble1 : bubble2;
-        dialogueAnimator.SetBool("Isfirst", _character1Index == msg.characterIndex);
-        dialogueAnimator.SetTrigger("Next");
+        dialogueAnimator.SetBool(Isfirst, _character1Index == msg.characterIndex);
+        dialogueAnimator.SetTrigger(Next);
         string displayed = "";
         foreach (var t in msg.msg)
         {
@@ -75,10 +80,10 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             if (!Input.anyKeyDown) continue;
             updating.text = msg.msg;
-            dialogueAnimator.SetTrigger("Skip");
+            dialogueAnimator.SetTrigger(Skip);
             yield break;
         }
         yield return new WaitUntil(() => Input.anyKeyDown);
-        dialogueAnimator.SetTrigger("Skip");
+        dialogueAnimator.SetTrigger(Skip);
     }
 }
