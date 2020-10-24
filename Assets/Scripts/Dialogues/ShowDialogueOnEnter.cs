@@ -1,18 +1,21 @@
-using System;
 using UnityEngine;
 
-public class ShowDialogueOnEnter : MonoBehaviour
+namespace Dialogues
 {
-    public string enterTag;
-    public Dialogue dialogue;
-    private bool _triggered = false;
-    private void OnTriggerEnter(Collider other)
+    public class ShowDialogueOnEnter : MonoBehaviour
     {
-        if(_triggered) return;
-        if (other.CompareTag(enterTag))
+        public string enterTag;
+        public Dialogue dialogue;
+        private bool _triggered = false;
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            DialogueManager.Singleton.BeginDialogue(dialogue);
-            _triggered = true;
+            Debug.Log("Enter");
+            if (_triggered) return;
+            if (other.CompareTag(enterTag))
+            {
+                DialogueManager.Singleton.BeginDialogue(dialogue);
+                _triggered = true;
+            }
         }
     }
 }
