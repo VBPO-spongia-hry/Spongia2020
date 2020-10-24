@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.AccessControl;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,8 +26,11 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 _destination;
     [HideInInspector]
     public Transform _player;
-    
+
     private Coroutine _observing;
+    private Queue<Vector2> _path;
+    private Pathfinding _pathfinding;
+    private Vector2 _pathDestination;
     private void Start()
     {
         _seePlayer = false;
@@ -35,35 +39,44 @@ public class EnemyMovement : MonoBehaviour
         _player = GameObject.FindWithTag("Player").transform;
         state = EnemyState.Patrol;
         _destination = _spawn;
+        _path = new Queue<Vector2>();
+        _pathDestination = _spawn;
+        _pathfinding = Pathfinding.GetPathfinding(_spawn);
+        StartCoroutine(OnDestinationArrived(false));
     }
 
     private void Update()
     {
         if (InputHandler.DisableInput) return;
-        if (_seePlayer) _destination = _player.position;   
-        if (Vector2.Distance(transform.position, _player.position) < attackRange && _seePlayer)
+        if (_seePlayer) Moveto(_player.position);
+        else if (state == EnemyState.Patrol)
         {
-            state = EnemyState.Attack;
-            _rb.velocity = Vector2.zero;
-        }
-        else if (state == EnemyState.Follow || state == EnemyState.Patrol)
-        {
-            var velocity = state != EnemyState.Follow ? speed : followSpeed;
-            var position = _rb.position;
-            var movement = (_destination - position).normalized;
-            _rb.MovePosition(position + movement * (velocity * Time.deltaTime));
-            //Debug.Log(movement.magnitude);
-            if (Vector2.Distance(transform.position, _destination) < .3f) _observing = StartCoroutine(OnDestinationArrived());
+            if (_path.Count == 0) StartCoroutine(OnDestinationArrived(true));
+            if (Vector2.Distance(_rb.position, _pathDestination) < .2f) _pathDestination = _path.Dequeue();
+            Moveto(_pathDestination);
         }
     }
 
-    private IEnumerator OnDestinationArrived()
+    private void Moveto(Vector2 destination)
     {
-        state = EnemyState.Observe;
-        _rb.velocity = Vector2.zero;
-        Debug.Log("Arrived");
-        //TODO: otacanie a hladanie hraca
-        yield return new WaitForSeconds(observeTime);
+        var velocity = state != EnemyState.Follow ? speed : followSpeed;
+        var position = _rb.position;
+        var movement = (destination - position).normalized;
+        _rb.MovePosition(position + movement * (velocity * Time.deltaTime));
+        //Debug.Log(movement.magnitude);
+        //if (Vector2.Distance(transform.position, destination) < .3f && triggerOnArrive) _observing = StartCoroutine(OnDestinationArrived());
+    }
+
+    private IEnumerator OnDestinationArrived(bool observe)
+    {
+        if (observe)
+        {
+            state = EnemyState.Observe;
+            _rb.velocity = Vector2.zero;
+            Debug.Log("Arrived");
+            //TODO: otacanie a hladanie hraca
+            yield return new WaitForSeconds(observeTime);
+        }
         switch (mode)
         {
             case EnemyMode.Patrol:
@@ -83,7 +96,17 @@ public class EnemyMovement : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+        AssignNewPath();
         state = EnemyState.Patrol;
+        yield break;
+    }
+
+    private void AssignNewPath()
+    {
+        foreach (var dest in _pathfinding.GetPath(Vector2Int.RoundToInt(_rb.position), Vector2Int.RoundToInt(_destination)))
+        {
+            _path.Enqueue(dest);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -103,7 +126,23 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("Player escaped");
         _seePlayer = false;
         state = EnemyState.Patrol;
+        StartCoroutine(OnDestinationArrived(false));
         if (mode == EnemyMode.Idle || mode == EnemyMode.Defend) _destination = _spawn;
         else _destination = waypoints[_waypointIndex].position;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(!other.CompareTag("Player")) return;
+        _seePlayer = true;
+        if (Vector2.Distance(_rb.position, _player.position) < attackRange)
+        {
+            state = EnemyState.Attack;
+            _rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            state = EnemyState.Follow;
+        }
     }
 }
