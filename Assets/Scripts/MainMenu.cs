@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
     public Toggle fullscreen;
 
     private string _message;
-    public string message {
+    public string Message {
         get { return _message; }
         set {
             _message = value;
@@ -58,7 +58,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void changeVolume()
+    private void ChangeVolume()
     {
         audioMixer.SetFloat("SFX", SFXSlider.value);
         audioMixer.SetFloat("Music", MusicSlider.value);
@@ -97,7 +97,7 @@ public class MainMenu : MonoBehaviour
         Animation.Play("Show");
         Screen.SetResolution(resolution.x, resolution.y, fullscreen.isOn);
         MainText.SetText("Naval Transport Simulator");
-        changeVolume();
+        ChangeVolume();
         SaveData saveData = GetSaveData();
         GameSaver.Savegame(saveData);
     }
@@ -115,8 +115,9 @@ public class MainMenu : MonoBehaviour
         switch (Action)
         {
             case action.singleplayer:
-                MultiplayerAnim.Play("Show");
-                MainText.SetText("Create Game");
+                // MultiplayerAnim.Play("Show");
+                // MainText.SetText("Create Game");
+                SceneManager.LoadScene(1);
                 break;
             case action.Howtoplay:
                 HowToPlayAnim.Play("Show");
@@ -143,7 +144,7 @@ public class MainMenu : MonoBehaviour
         resolution.y = int.Parse(option[1]);
     }
 
-    public SaveData GetSaveData()
+    private SaveData GetSaveData()
     {
         SaveData saveData = new SaveData();
         saveData.MusicVol = MusicSlider.value;
@@ -158,11 +159,11 @@ public class MainMenu : MonoBehaviour
         return saveData;
     }
 
-    public void LoadData(SaveData data)
+    private void LoadData(SaveData data)
     {
         SFXSlider.value = data.SFXVol;
         MusicSlider.value = data.MusicVol;
-        changeVolume();
+        ChangeVolume();
         Screen.SetResolution(data.resX, data.resY, data.fullscreen);
         dropdown.value = dropdown.options.IndexOf(new Dropdown.OptionData(data.resX + "×" + data.resY));
         inputField.text = data.name;
