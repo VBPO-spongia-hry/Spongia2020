@@ -61,6 +61,12 @@ public class EnemyMovement : MonoBehaviour
             _pathDestValid = false;
             //Debug.Log("Move to player");
         }
+
+        if (state == EnemyState.Attack)
+        {
+            _path.Clear();
+            _pathDestValid = false;
+        }
         if (state == EnemyState.Patrol)
         {
             if (_path.Count == 0)
@@ -177,6 +183,7 @@ public class EnemyMovement : MonoBehaviour
         if (Vector2.Distance(_rb.position, Player.position) < attackRange)
         {
             state = EnemyState.Attack;
+            _pathDestValid = false;
             _rb.velocity = Vector2.zero;
         }
         else
@@ -205,12 +212,10 @@ public class EnemyMovement : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
         Gizmos.DrawWireSphere(transform.position, .5f);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, _destination);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, _pathDestination);
         var p = _path.ToArray();
-        for (int i = 0; i < _path.Count-1; i++)
+        for (int i = 0; i < _path.Count; i++)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(p[i], p[i+1]);
