@@ -25,21 +25,45 @@ public class Pathfinding : MonoBehaviour
         return _pathfinders.Where(pathfinder => pathfinder.bounds.Contains(Vector2Int.RoundToInt(pos))).FirstOrDefault();
     }
 
+    public bool PathExist(Vector2 start, Vector2 destination)
+    {
+        if(!bounds.Contains(Vector2Int.RoundToInt(start)) || !bounds.Contains(Vector2Int.RoundToInt(destination)))
+        {
+            return false;
+        }
+
+        if (!Graph[(int) start.x - bounds.xMin, (int) start.y - bounds.yMin].Walkable) return false;
+        return GetPath(start, destination) == null;
+    }
     private void BuildGraph()
     {
         Graph = new GridNode[bounds.size.x,bounds.size.y];
-        Debug.Log(Graph.GetLength(0));
-        Debug.Log(Graph.GetLength(1));
         for (int i = 0; i < Graph.GetLength(0); i++)
         {
             for (int j = 0; j < Graph.GetLength(1); j++)
             {
                 var worldPos = new Vector2(bounds.xMin + i, bounds.yMin + j);
                 var isWalkable = Physics2D.OverlapCircleAll(worldPos + (Vector2.one * .5f), Mathf.Sqrt(2)/2, obstacleMask).Length == 0;
-                if(!isWalkable) Debug.Log("Not walkable node at "+ new Vector2(i,j));
                 Graph[i,j] = new GridNode(new Vector2Int(i,j), isWalkable);
             }
         }
+    }
+
+    public Vector2Int FindNearestWalkable(Vector2 target)
+    {
+        Queue<GridNode> nodeQueue = new Queue<GridNode>();
+        nodeQueue.Enqueue(Graph[(int)target.x - bounds.xMin, (int)target.y - bounds.yMin]);
+        while (nodeQueue.Count > 0)
+        {
+            var current = nodeQueue.Dequeue();
+            if (current.Walkable) return current.Coords + new Vector2Int(bounds.xMin, bounds.yMin);
+            foreach (var node in FindNeighbors(current,true))
+            {
+                nodeQueue.Enqueue(node);
+            }
+        }
+
+        return Vector2Int.zero;
     }
 
     public List<Vector2> GetPath(Vector2 worldStart, Vector2 worldDestination)
@@ -55,8 +79,6 @@ public class Pathfinding : MonoBehaviour
     
     private List<Vector2> FindPath(Vector2Int start, Vector2Int destination)
     {
-        Debug.Log(start);
-        Debug.Log(destination);
         var openList = new List<GridNode>();
         var closedList = new List<GridNode>();
         openList.Add(Graph[start.x, start.y]);
@@ -103,7 +125,7 @@ public class Pathfinding : MonoBehaviour
                 }
                 ClearGraph();
                 path.Reverse();
-                Debug.Log(path.Count);
+//                Debug.Log(path.Count);
                 
                 return path;
             }
@@ -126,7 +148,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
     
-    private List<GridNode> FindNeighbors(GridNode node)
+    private List<GridNode> FindNeighbors(GridNode node, bool includeUnwalkable = false)
     {
         var coords = node.Coords;
         var neighbors = new List<GridNode>(8);
@@ -137,7 +159,8 @@ public class Pathfinding : MonoBehaviour
             if(coords.x + smeryX[i] < 0 || coords.x + smeryX[i] >= Graph.GetLength(0)) continue;
             if(coords.y + smeryY[i] < 0 || coords.y + smeryY[i] >= Graph.GetLength(1)) continue;
             var neighbor = Graph[coords.x + smeryX[i], coords.y + smeryY[i]];
-            if(neighbor.Walkable) neighbors.Add(neighbor);
+            if(!neighbor.Walkable && !includeUnwalkable) continue; 
+            neighbors.Add(neighbor);
         }
 
         return neighbors;
@@ -145,8 +168,6 @@ public class Pathfinding : MonoBehaviour
     
     private class GridNode
     {
-        public static int width;
-        public static int height;
         public Vector2Int Coords;
         public GridNode LastNode;
         public bool Walkable;
@@ -170,7 +191,7 @@ public class Pathfinding : MonoBehaviour
             for (int j = 0; j < Graph.GetLength(1); j++)
             {
                 Gizmos.color = Graph[i, j].Walkable ? Color.white : Color.red;
-                Gizmos.DrawWireSphere(new Vector3(i + bounds.xMin,j + bounds.yMin), .2f);
+                Gizmos.DrawWireSphere(new Vector3(i + bounds.xMin,j + bounds.yMin) + Vector3.one * .5f, .2f);
             }
         }
     }

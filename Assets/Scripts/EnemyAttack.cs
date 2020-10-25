@@ -25,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
         if (_movement.state != EnemyMovement.EnemyState.Attack) return;
         if (!(_timer > _nextAttack)) return;
         _nextAttack += fireRate;
-        Attack(_movement._player.position);
+        Attack(_movement.Player.position);
     }
 
     private void Attack(Vector2 destination)

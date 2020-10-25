@@ -24,6 +24,6 @@ public class PlayerMovement : MonoBehaviour
     private void LateUpdate()
     {
         var position = _rb.position;
-        _camera.position = Vector3.Lerp(_camera.position, new Vector3(position.x, position.y,-2), Time.deltaTime);
+        _camera.position = Vector3.Lerp(_camera.position, new Vector3(position.x, position.y,-2), playerSpeed * Time.deltaTime);
     }
 }
