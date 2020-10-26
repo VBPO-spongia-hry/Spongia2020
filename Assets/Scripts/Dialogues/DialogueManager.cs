@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,8 @@ namespace Dialogues
         private static readonly int Isfirst = Animator.StringToHash("Isfirst");
         private static readonly int Viewing = Animator.StringToHash("Viewing");
         private static readonly int DialogueStart = Animator.StringToHash("DialogueStart");
-
+        private bool _showingDialogue;
+        
         private void OnEnable()
         {
             if(Singleton != null) Destroy(Singleton.gameObject);
@@ -32,8 +34,17 @@ namespace Dialogues
        //     BeginDialogue(dialogues.dialogues[0]);
         }
 
+        private void Update()
+        {
+            if (_showingDialogue)
+            {
+                if(Input.anyKeyDown) dialogueAnimator.SetTrigger(Skip);
+            }
+        }
+
         public void BeginDialogue(Dialogue dialogue)
         {
+            dialogueAnimator.ResetTrigger(Skip);
             InputHandler.DisableInput = true;
             _character1Index = -1;
             _character2Index = -1;
@@ -57,6 +68,7 @@ namespace Dialogues
 
         private IEnumerator Begin(Dialogue dialogue)
         {
+            _showingDialogue = true;
             dialogueAnimator.SetTrigger(DialogueStart);
             dialogueAnimator.SetBool(Viewing,true);
             dialogue.Reset();
@@ -68,6 +80,7 @@ namespace Dialogues
             dialogueAnimator.SetBool(Viewing, false);
             InputHandler.DisableInput = false;
             Debug.Log("End");
+            _showingDialogue = false;
         }
 
         private IEnumerator ShowMessage(Message msg)
@@ -75,6 +88,7 @@ namespace Dialogues
             Text updating = msg.characterIndex == _character1Index ? bubble1 : bubble2;
             dialogueAnimator.SetBool(Isfirst, _character1Index == msg.characterIndex);
             dialogueAnimator.SetTrigger(Next);
+            dialogueAnimator.ResetTrigger(Skip);
             string displayed = "";
             foreach (var t in msg.msg)
             {
@@ -83,11 +97,8 @@ namespace Dialogues
                 yield return new WaitForSeconds(0.05f);
                 if (!Input.anyKeyDown) continue;
                 updating.text = msg.msg;
-                dialogueAnimator.SetTrigger(Skip);
-                yield break;
             }
-            yield return new WaitUntil(() => Input.anyKeyDown);
-            dialogueAnimator.SetTrigger(Skip);
+            yield return new WaitUntil(() => dialogueAnimator.GetCurrentAnimatorStateInfo(0).IsName("UIShown"));
         }
     }
 }
