@@ -16,10 +16,11 @@ namespace Items
             set
             {
                 _item = value;
-                GetComponentInChildren<Image>().sprite = _item.icon;
+                GetComponentInChildren<Image>().sprite = _item == null ? null : _item.icon;
             }
         }
 
+        public bool isLoadoutSlot;
         private int _count;
         public int Count
         {
@@ -46,6 +47,36 @@ namespace Items
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (!isLoadoutSlot)
+            {
+                switch (eventData.button)
+                {
+                    case PointerEventData.InputButton.Left:
+                        Equip();
+                        break;
+                    case PointerEventData.InputButton.Right:
+                        Inventory.Instance.ThrowItem(Inventory.Instance.FindItem(_item.itemName));
+                        Inventory.Instance.RemoveItem(_item.itemName);
+                        break;
+                    case PointerEventData.InputButton.Middle:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            else
+            {
+                if (Inventory.Instance.CanAddItem(Item))
+                {
+                    Inventory.Instance.AddItem(Item);
+                    Item = null;
+                }
+            }
+            
+        }
+
+        private void Equip()
+        {
             switch (Item.type)
             {
                 case ItemType.Protection:
@@ -65,6 +96,7 @@ namespace Items
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             Inventory.Instance.RemoveItem(Item.itemName);
         }
 

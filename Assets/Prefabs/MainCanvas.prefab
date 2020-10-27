@@ -384,7 +384,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1048018971}
   m_HandleRect: {fileID: 1048018970}
   m_Direction: 2
-  m_Value: 0.49999958
+  m_Value: 0.9586891
   m_Size: 0.43214145
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -642,7 +642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.0004272461}
+  m_AnchoredPosition: {x: -473.5, y: -520.94104}
   m_SizeDelta: {x: 3000, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &907498009
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 893867956}
   m_HandleRect: {fileID: 893867955}
   m_Direction: 0
-  m_Value: 0.50000006
+  m_Value: 0.77103597
   m_Size: 0.41766667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1286,6 +1286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241bb3a21b194956b0c81d4d1f913acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoadoutSlot: 1
   countText: {fileID: 0}
 --- !u!1 &474017899287651776
 GameObject:
@@ -1851,6 +1852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241bb3a21b194956b0c81d4d1f913acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoadoutSlot: 1
   countText: {fileID: 0}
 --- !u!1 &2917355430246100228
 GameObject:
@@ -2096,6 +2098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241bb3a21b194956b0c81d4d1f913acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoadoutSlot: 1
   countText: {fileID: 0}
 --- !u!1 &4518881849901802996
 GameObject:
@@ -2491,6 +2494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241bb3a21b194956b0c81d4d1f913acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoadoutSlot: 1
   countText: {fileID: 0}
 --- !u!1 &5521576993832915329
 GameObject:

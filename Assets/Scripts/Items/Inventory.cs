@@ -17,7 +17,7 @@ namespace Items
         private List<InventoryItem> _items;
         public Slider capacitySlider;
         public TextMeshProUGUI capacityText;
-
+        
         private void Start()
         {
             Usage = 0;
@@ -111,23 +111,33 @@ namespace Items
         
         public void RemoveItem(string itemName)
         {
-            if(!ContainsItem(itemName)) return;
-            foreach (var item in _items)
+            //if(!ContainsItem(itemName)) return;
+            Debug.Log("Removing " + itemName);
+            var item = FindItem(itemName);
+            _items.Remove(item);
+            Usage -= item.Count * item.Item.spaceRequired;
+            Destroy(item.gameObject);
+            
+        }
+
+        public void ThrowItem(InventoryItem item)
+        {
+            for (int i = 0; i < item.Count; i++)
             {
-                if (item.Item.name == itemName)
-                {
-                    _items.Remove(item);
-                    Destroy(item.gameObject);
-                    ItemRenderer itemRenderer = Instantiate(itemPrefab, transform.position, Quaternion.identity).GetComponent<ItemRenderer>();
-                    itemRenderer.item = item.Item;
-                    break;
-                }
+                ItemRenderer itemRenderer =
+                    Instantiate(itemPrefab, transform.position, Quaternion.identity).GetComponent<ItemRenderer>();
+                itemRenderer.item = item.Item;                
             }
         }
 
         private bool ContainsItem(string itemName)
         {
             return _items.Any(item => item.Item.name == itemName);
+        }
+
+        public InventoryItem FindItem(string itemName)
+        {
+            return _items.First(item => item.Item.itemName == itemName);
         }
 
         public void ShowTooltip(Item item)
