@@ -1,4 +1,5 @@
 using System;
+using Items;
 using UnityEngine;
 
 public class PlayerVitals : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerVitals : MonoBehaviour
     public int infectionRegenerationAmount = 3;
     public int infectionHealthDropAmount = 5;
     public float infectionDropRate = 2;
+    public Inventory inventory;
     [NonSerialized]
     public int InfectionStrength;
     private float _timer;
@@ -21,6 +23,7 @@ public class PlayerVitals : MonoBehaviour
     
     private void Update()
     {
+        if(InputHandler.DisableInput) return;
         _timer += Time.deltaTime;
         UpdateVitals();
     }
@@ -43,7 +46,7 @@ public class PlayerVitals : MonoBehaviour
         {
             if (InfectionStrength > 0)
             {
-                infection -= InfectionStrength;
+                infection -= (int)(InfectionStrength * (1 - inventory.Protection.protectionLevel));
                 if (infection <= 0) health -= infectionHealthDropAmount;
             }
             else
@@ -57,7 +60,8 @@ public class PlayerVitals : MonoBehaviour
 
     public void ApplyDamage(int damage)
     {
-        health -= damage;
+        float damageMultiplier = Inventory.Instance.Armor == null ? 1 : 1 - Inventory.Instance.Armor.toughness;
+        health -= damage * damageMultiplier;
         if(health <= 0) Dead();
     }
 

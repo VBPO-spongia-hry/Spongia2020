@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.AccessControl;
+using System.Timers;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     public float observeTime;
     public Transform[] waypoints;
     public float maxDefendRadius;
+    public Transform flashlight;
     public enum EnemyState {Patrol, Observe, Follow, Attack}
     [HideInInspector]
     public EnemyState state;
@@ -86,6 +88,10 @@ public class EnemyMovement : MonoBehaviour
         var position = _rb.position;
         var movement = (destination - position).normalized;
         _rb.MovePosition(position + movement * (velocity * Time.deltaTime));
+        if (flashlight != null)
+        {
+            flashlight.rotation = Quaternion.Slerp(flashlight.rotation, Quaternion.Euler(0,0, Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90), 10 * Time.deltaTime);
+        }
     }
 
     private IEnumerator OnDestinationArrived(bool observe)

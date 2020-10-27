@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform flashlight;
     private Rigidbody2D _rb;
     private Transform _camera;
+    public static IInteractable _interactable;
 
     private void Start()
     {
@@ -26,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
             flashlight.rotation = Quaternion.Slerp(flashlight.rotation,
                 Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90),
                 10 * Time.deltaTime);
+        }
+
+        if (InputHandler.GetInteract())
+        {
+            _interactable?.Interact();
         }
     }
 

@@ -21,8 +21,9 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        _timer += Time.deltaTime;
+        if(InputHandler.DisableInput) return;
         if (_movement.state != EnemyMovement.EnemyState.Attack) return;
+        _timer += Time.deltaTime;
         if (_timer > _nextAttack)
         {
             _nextAttack += fireRate;

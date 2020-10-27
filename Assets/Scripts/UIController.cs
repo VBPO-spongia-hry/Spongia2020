@@ -14,12 +14,14 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI infectionText;
     private TabUI _menuTabs;
     public PlayerVitals vitals;
+    public Button interactionButton;
 
     private void Start()
     {
         _menuTabs = menuUI.GetComponent<TabUI>();
         hungerSlider.maxValue = vitals.hunger;
         infectionSlider.maxValue = vitals.infection;
+        interactionButton.onClick.AddListener(() => PlayerMovement._interactable?.Interact());
     }
 
     private void Update()
@@ -31,6 +33,7 @@ public class UIController : MonoBehaviour
         hungerText.SetText($"{hungerSlider.value}/{hungerSlider.maxValue}");
         infectionSlider.value = vitals.infection;
         infectionText.SetText($"{infectionSlider.value}/{infectionSlider.maxValue}");
+        interactionButton.interactable = PlayerMovement._interactable != null;
     }
 
     public void ShowMap()
