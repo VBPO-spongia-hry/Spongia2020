@@ -6,7 +6,7 @@ using UnityEngine;
 public enum AttackMode {Melee, Ranged}
 public class EnemyAttack : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public float fireRate;
     public AttackMode attackMode;
     public float meleeRange;
@@ -21,11 +21,14 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        _timer += Time.deltaTime;
+        if(InputHandler.DisableInput) return;
         if (_movement.state != EnemyMovement.EnemyState.Attack) return;
-        if (!(_timer > _nextAttack)) return;
-        _nextAttack += fireRate;
-        Attack(_movement.Player.position);
+        _timer += Time.deltaTime;
+        if (_timer > _nextAttack)
+        {
+            _nextAttack += fireRate;
+            Attack(_movement.Player.position);
+        }
     }
 
     private void Attack(Vector2 destination)
@@ -35,13 +38,20 @@ public class EnemyAttack : MonoBehaviour
         {
             case AttackMode.Melee:
             {
-                var player = Physics2D.OverlapCircleAll(transform.position, meleeRange).First((collider2D1 => collider2D1.CompareTag("Player")));
-                //TODO: apply damage to player
-                //player.GetComponent<>()
+                var colliders = Physics2D.OverlapCircleAll(transform.position, meleeRange);
+                foreach (var coll in colliders)
+                {
+                    if (coll.CompareTag("Player"))
+                    {
+                        coll.GetComponent<PlayerVitals>().ApplyDamage(damage);
+                        break;
+                    }
+                }
                 break;
             }
             case AttackMode.Ranged:
-                Instantiate(projectile, transform.position, transform.rotation);
+                var transform1 = transform;
+                Instantiate(projectile, transform1.position, transform1.rotation);
                 //TODO: implement projectiles
                 break;
             default:

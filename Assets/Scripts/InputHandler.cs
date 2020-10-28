@@ -21,4 +21,9 @@ public static class InputHandler
     {
         return new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical")) * Time.deltaTime;
     }
+
+    public static bool GetInteract()
+    {
+        return Input.GetKeyDown(KeyCode.E);
+    }
 }

@@ -191,7 +191,7 @@ public class Pathfinding : MonoBehaviour
             for (int j = 0; j < Graph.GetLength(1); j++)
             {
                 Gizmos.color = Graph[i, j].Walkable ? Color.white : Color.red;
-                Gizmos.DrawWireSphere(new Vector3(i + bounds.xMin,j + bounds.yMin) + Vector3.one * .5f, .2f);
+                Gizmos.DrawWireSphere(new Vector3(i + bounds.xMin,j + bounds.yMin), .2f);
             }
         }
     }
