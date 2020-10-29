@@ -47,7 +47,8 @@ public class EnemyMovement : MonoBehaviour
         _path = new Queue<Vector2>();
         _pathDestination = _spawn;
         _prevPos = _spawn;
-        _pathfinding = Pathfinding.GetPathfinding(_spawn);
+        _pathfinding = Pathfinding.GetPathfinding();
+        if (_pathfinding == null) Debug.LogError("Couldn\'t find pathfinder");
         StartCoroutine(OnDestinationArrived(false));
     }
 
@@ -193,6 +194,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (_path == null) return;
         switch (state)
         {
             case EnemyState.Patrol:
@@ -215,6 +217,7 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.DrawLine(transform.position, _destination);
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, _pathDestination);
+        
         var p = _path.ToArray();
         for (int i = 0; i < _path.Count-1; i++)
         {

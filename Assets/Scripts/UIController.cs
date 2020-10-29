@@ -15,6 +15,13 @@ public class UIController : MonoBehaviour
     private TabUI _menuTabs;
     public PlayerVitals vitals;
     public Button interactionButton;
+    public static UIController Instance;
+
+    private void OnEnable()
+    {
+        if (Instance != null) Destroy(Instance.gameObject);
+        Instance = this;
+    }
 
     private void Start()
     {

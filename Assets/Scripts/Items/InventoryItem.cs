@@ -64,7 +64,7 @@ namespace Items
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            else
+            else if (_item != null)
             {
                 if (Inventory.Instance.CanAddItem(Item))
                 {
@@ -80,15 +80,19 @@ namespace Items
             switch (Item.type)
             {
                 case ItemType.Protection:
+                    if(Inventory.Instance.Protection != null) return;
                     Inventory.Instance.Protection = _item;
                     break;
                 case ItemType.Weapon:
+                    if(Inventory.Instance.weapon != null) return;
                     Inventory.Instance.weapon = _item;
                     break;
                 case ItemType.Armor:
+                    if(Inventory.Instance.Armor != null) return;
                     Inventory.Instance.Armor = _item;
                     break;
                 case ItemType.InventoryUpgrade:
+                    if(Inventory.Instance.Backpack != null) return;
                     Inventory.Instance.Backpack = _item;
                     break;
                 case ItemType.Other:
