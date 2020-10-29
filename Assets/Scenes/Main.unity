@@ -11327,11 +11327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 907498008, guid: fee8bdb1378a7008a88fdd20071ecb8d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -873.5
       objectReference: {fileID: 0}
     - target: {fileID: 907498008, guid: fee8bdb1378a7008a88fdd20071ecb8d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0009765625
+      value: -567.8586
       objectReference: {fileID: 0}
     - target: {fileID: 1048018970, guid: fee8bdb1378a7008a88fdd20071ecb8d, type: 3}
       propertyPath: m_AnchorMin.y
@@ -11437,36 +11437,6 @@ PrefabInstance:
     - target: {fileID: 2824676832520674060, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128996927037316559, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128996927037316559, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128996927037316559, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128996927037316559, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128996927037316559, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3128996927037316559, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5386431869742938193, guid: fee8bdb1378a7008a88fdd20071ecb8d,

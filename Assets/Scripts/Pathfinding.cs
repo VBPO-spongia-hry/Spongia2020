@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Environment;
 using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Pathfinding : MonoBehaviour
     public LayerMask obstacleMask;
     private GridNode[,] Graph;
 
-    private void OnEnable()
+    private void Awake()
     {
         if(_pathfinders == null) _pathfinders = new List<Pathfinding>();
         _pathfinders.Add(this);
@@ -20,9 +21,9 @@ public class Pathfinding : MonoBehaviour
     }
 
     private static List<Pathfinding> _pathfinders;
-    public static Pathfinding GetPathfinding(Vector2 pos)
+    public static Pathfinding GetPathfinding()
     {
-        return _pathfinders.Where(pathfinder => pathfinder.bounds.Contains(Vector2Int.RoundToInt(pos))).FirstOrDefault();
+        return Map.Instance.current.pathfinding;
     }
 
     public bool PathExist(Vector2 start, Vector2 destination)
@@ -185,7 +186,9 @@ public class Pathfinding : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+       
         Gizmos.DrawWireCube(bounds.center,  new Vector3(bounds.size.x, bounds.size.y, 2));
+        if (Graph == null) return;
         for (int i = 0; i < Graph.GetLength(0); i++)
         {
             for (int j = 0; j < Graph.GetLength(1); j++)
