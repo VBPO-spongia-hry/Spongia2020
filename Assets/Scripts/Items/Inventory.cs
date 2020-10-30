@@ -77,7 +77,6 @@ namespace Items
         public void AddItem(Item item)
         {
             if(!CanAddItem(item)) return;
-            MissionManager.Instance.UpdateInventoryMissions();
             if (ContainsItem(item.name))
             {
                 var slot = _items.FirstOrDefault(inventoryItem => inventoryItem.Item.itemName == item.itemName);
@@ -95,6 +94,7 @@ namespace Items
                 _items.Add(newItem);
             }
             Usage += item.spaceRequired;
+            MissionManager.Instance.UpdateInventoryMissions();
         }
 
         private void Update()

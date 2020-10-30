@@ -48,7 +48,7 @@ namespace Missions
         {
             foreach (var mission in missions)
             {
-                if (mission.type == MissionType.Inventory && !mission.complete)
+                if (mission.type == MissionType.Inventory && !mission.Complete)
                 {
                     mission.CheckComplete();
                 }
@@ -59,14 +59,14 @@ namespace Missions
         {
             foreach (var mission in missions)
             {
-                if(active.Contains(mission) || mission.complete) continue;
+                if(active.Contains(mission) || mission.Complete) continue;
                 mission.CheckUnlocked();
             }
         }
 
         public void OnMissionUpdate(Mission mission)
         {
-            if (mission.complete)
+            if (mission.Complete)
             {
                 active.Remove(mission);
                 _gameProgress++;
@@ -79,7 +79,7 @@ namespace Missions
         private void Complete(Mission mission)
         {
             _uIshowing = true;
-            string headerText = mission.complete ? "Mission Completed" : "Mission Unlocked";
+            string headerText = mission.Complete ? "Mission Completed" : "Mission Unlocked";
             unlockHeader.SetText(headerText);
             unlockContent.SetText(mission.missionName);
             unlockAnim.Play("UnlockShow");

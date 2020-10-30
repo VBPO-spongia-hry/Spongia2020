@@ -19,7 +19,8 @@ namespace Missions
         public MissionType type;
         public string missionName;
         public string itemName;
-        public bool complete;
+        [NonSerialized]
+        public bool Complete = false;
         public bool unlocked;
         public Mission[] needToUnlock;
         public int failTime;
@@ -29,7 +30,7 @@ namespace Missions
 
         public void UpdateProgress()
         {
-            if(complete) return;
+            if(Complete) return;
             _progress++;
             CheckComplete();
         }
@@ -39,19 +40,19 @@ namespace Missions
             switch (type)
             {
                 case MissionType.Inventory:
-                    complete = Inventory.Instance.ContainsItem(itemName);
+                    Complete = Inventory.Instance.ContainsItem(itemName);
                     break;
                 case MissionType.Destination:
-                    complete = _progress >= completion;
+                    Complete = _progress >= completion;
                     break;
                 case MissionType.Combat:
-                    complete = _progress >= completion;
+                    Complete = _progress >= completion;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (complete)
+            if (Complete)
             {
                 MissionManager.Instance.OnMissionUpdate(this);
             }

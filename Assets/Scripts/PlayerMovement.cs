@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform flashlight;
     private Rigidbody2D _rb;
     private Transform _camera;
+    public GameObject sideSkeleton;
+    public GameObject frontSkeleton;
+    public GameObject backSkeleton;
     public static IInteractable _interactable;
 
     private void Start()
@@ -27,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
             flashlight.rotation = Quaternion.Slerp(flashlight.rotation,
                 Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90),
                 10 * Time.deltaTime);
+            SetDirection(direction);
         }
 
         if (InputHandler.GetInteract())
@@ -39,5 +43,37 @@ public class PlayerMovement : MonoBehaviour
     {
         var position = _rb.position;
         _camera.position = Vector3.Lerp(_camera.position, new Vector3(position.x, position.y,-2), playerSpeed * Time.deltaTime);
+    }
+
+    private void SetDirection(Vector2 movement)
+    {
+        var directions = new [] { Vector2.down, Vector2.right, Vector2.left, Vector2.up, };
+        var mindelta = float.PositiveInfinity;
+        var dir = Vector2.zero;
+        frontSkeleton.SetActive(false);
+        backSkeleton.SetActive(false);
+        sideSkeleton.SetActive(false);
+        foreach (var direction in directions)
+        {
+            if ((movement - direction).magnitude < mindelta)
+            {
+                mindelta = (movement - direction).magnitude;
+                dir = direction;
+            }
+        }
+        
+        if (dir == Vector2.down) frontSkeleton.SetActive(true);
+        else if (dir == Vector2.up) backSkeleton.SetActive(true);
+        else if (dir == Vector2.left)
+        {
+            //Debug.Log("Left active");
+            sideSkeleton.SetActive(true);
+            sideSkeleton.transform.localScale = new Vector3(1,1);
+        }
+        else
+        {
+            sideSkeleton.SetActive(true);
+            sideSkeleton.transform.localScale = new Vector3(-1,1);
+        }
     }
 }

@@ -37,7 +37,10 @@ public class EnemyMovement : MonoBehaviour
     private bool _pathDestValid;
     private Vector2 _prevPos;
     private bool _waitingForPath;
-    
+    [SerializeField] private GameObject frontSkeleton;
+    [SerializeField] private GameObject backSkeleton;
+    [SerializeField] private GameObject sideSkeleton;
+
     private void Start()
     {
         _seePlayer = false;
@@ -95,6 +98,7 @@ public class EnemyMovement : MonoBehaviour
         {
             flashlight.rotation = Quaternion.Slerp(flashlight.rotation, Quaternion.Euler(0,0, Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90), 10 * Time.deltaTime);
         }
+        SetDirection(movement);
     }
 
     private IEnumerator OnDestinationArrived(bool observe)
@@ -223,6 +227,38 @@ public class EnemyMovement : MonoBehaviour
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(p[i], p[i+1]);
+        }
+    }
+    
+    private void SetDirection(Vector2 movement)
+    {
+        var directions = new [] { Vector2.down, Vector2.right, Vector2.left, Vector2.up, };
+        var mindelta = float.PositiveInfinity;
+        var dir = Vector2.zero;
+        frontSkeleton.SetActive(false);
+        backSkeleton.SetActive(false);
+        sideSkeleton.SetActive(false);
+        foreach (var direction in directions)
+        {
+            if ((movement - direction).magnitude < mindelta)
+            {
+                mindelta = (movement - direction).magnitude;
+                dir = direction;
+            }
+        }
+        
+        if (dir == Vector2.down) frontSkeleton.SetActive(true);
+        else if (dir == Vector2.up) backSkeleton.SetActive(true);
+        else if (dir == Vector2.left)
+        {
+            //Debug.Log("Left active");
+            sideSkeleton.SetActive(true);
+            sideSkeleton.transform.localScale = new Vector3(1,1);
+        }
+        else
+        {
+            sideSkeleton.SetActive(true);
+            sideSkeleton.transform.localScale = new Vector3(-1,1);
         }
     }
 }

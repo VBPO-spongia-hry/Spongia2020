@@ -16,7 +16,9 @@ namespace Dialogues
         public Animator dialogueAnimator;
         public TextMeshProUGUI nameText1;
         public TextMeshProUGUI nameText2;
-
+        public GameObject vitalsUI;
+        public GameObject controlsUI;
+        
         private DialogueCharacter _character1;
         private DialogueCharacter _character2;
         
@@ -52,6 +54,8 @@ namespace Dialogues
             InputHandler.DisableInput = true;
             _character1 = null;
             _character2 = null;
+            vitalsUI.SetActive(false);
+            controlsUI.SetActive(false);
             foreach (var msg in dialogue.messages)
             {
                 if (_character1 == null) _character1 = msg.character;
@@ -93,6 +97,8 @@ namespace Dialogues
             InputHandler.DisableInput = false;
             Debug.Log("End");
             _showingDialogue = false;
+            vitalsUI.SetActive(true);
+            controlsUI.SetActive(true);
         }
 
         private IEnumerator ShowMessage(Message msg)
