@@ -2,7 +2,7 @@ using System;
 using Items;
 using UnityEngine;
 
-public class PlayerVitals : MonoBehaviour
+public class PlayerVitals : MonoBehaviour, IDamageable
 {
     public float health = 100;
     public float maxHealth = 100;
@@ -46,14 +46,19 @@ public class PlayerVitals : MonoBehaviour
         {
             if (InfectionStrength > 0)
             {
-                infection -= (int)(InfectionStrength * (1 - inventory.Protection.protectionLevel));
-                if (infection <= 0) health -= infectionHealthDropAmount;
+                var protectionMultiplier = inventory.Protection == null ? 0 : inventory.Protection.protectionLevel; 
+                infection -= (int)(InfectionStrength * (1 - protectionMultiplier));
+                if (infection <= 0)
+                {
+                    health -= infectionHealthDropAmount;
+                    infection = 0;
+                }
             }
             else
             {
                 if(infection < 100) infection += infectionRegenerationAmount;
             }
-
+            
             _nextInfectionUpdate = _timer + infectionDropRate;
         }
     }
@@ -65,7 +70,7 @@ public class PlayerVitals : MonoBehaviour
         if(health <= 0) Dead();
     }
 
-    private void Dead()
+    public void Dead()
     {
         
     }

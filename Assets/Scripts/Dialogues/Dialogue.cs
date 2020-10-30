@@ -28,5 +28,6 @@ namespace Dialogues
         [TextArea(5,10)]
         public string msg;
         public int characterIndex;
+        public DialogueCharacter character;
     }
 }

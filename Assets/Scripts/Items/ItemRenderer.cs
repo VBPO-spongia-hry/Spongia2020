@@ -41,5 +41,18 @@ namespace Items
                 PlayerMovement._interactable = null;
             }
         }
+
+        private void OnMouseEnter()
+        {
+            if (IsInteractable)
+            {
+                Inventory.Instance.ShowTooltip(item);
+            }
+        }
+
+        private void OnMouseExit()
+        {
+            Inventory.Instance.HideTooltip();
+        }
     }
 }

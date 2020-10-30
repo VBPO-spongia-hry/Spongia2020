@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +13,13 @@ namespace Dialogues
         public Text bubble1;
         public Image character2;
         public Text bubble2;
-        public DialogueList dialogues;
         public Animator dialogueAnimator;
-        private int _character1Index = -1;
-        private int _character2Index = -1;
+        public TextMeshProUGUI nameText1;
+        public TextMeshProUGUI nameText2;
+
+        private DialogueCharacter _character1;
+        private DialogueCharacter _character2;
+        
         private static readonly int Skip = Animator.StringToHash("Skip");
         private static readonly int Next = Animator.StringToHash("Next");
         private static readonly int Isfirst = Animator.StringToHash("Isfirst");
@@ -46,23 +50,31 @@ namespace Dialogues
         {
             dialogueAnimator.ResetTrigger(Skip);
             InputHandler.DisableInput = true;
-            _character1Index = -1;
-            _character2Index = -1;
+            _character1 = null;
+            _character2 = null;
             foreach (var msg in dialogue.messages)
             {
-                if (_character1Index == -1) _character1Index = msg.characterIndex;
-                else if (msg.characterIndex != _character1Index && _character2Index == -1) _character2Index = msg.characterIndex;
-                else if (msg.characterIndex != _character2Index && msg.characterIndex != _character1Index)
+                if (_character1 == null) _character1 = msg.character;
+                else if (msg.character != _character1 && _character2 == null) _character2 = msg.character;
+                else if (msg.character != _character2 && msg.character != _character1)
                 {
                     Debug.LogError("More than 2 characters in dialogue. Ignoring ... ");
-                    Debug.Log(_character1Index);
-                    Debug.Log(_character2Index);
                     return;
                 }
             }
+            nameText2.gameObject.SetActive(_character2 != null);
+            if (_character2 != null)
+            {
+                nameText2.SetText($"{_character2.characterName}, {_character2.job}");
+                character2.sprite = _character2.baseImage;
+            }
 
-            character1.sprite = dialogues.characters[_character1Index];
-            character2.sprite = dialogues.characters[_character2Index];
+            if (_character1 != null)
+            {
+                character1.sprite = _character1.baseImage;
+                nameText1.SetText($"{_character1.characterName}, {_character1.job}");
+            }
+            
             StartCoroutine(Begin(dialogue));
         }
 
@@ -85,8 +97,8 @@ namespace Dialogues
 
         private IEnumerator ShowMessage(Message msg)
         {
-            Text updating = msg.characterIndex == _character1Index ? bubble1 : bubble2;
-            dialogueAnimator.SetBool(Isfirst, _character1Index == msg.characterIndex);
+            Text updating = msg.character == _character1 ? bubble1 : bubble2;
+            dialogueAnimator.SetBool(Isfirst, _character1 == msg.character);
             dialogueAnimator.SetTrigger(Next);
             dialogueAnimator.ResetTrigger(Skip);
             string displayed = "";

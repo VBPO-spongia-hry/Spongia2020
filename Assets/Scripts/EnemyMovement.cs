@@ -36,6 +36,8 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 _pathDestination;
     private bool _pathDestValid;
     private Vector2 _prevPos;
+    private bool _waitingForPath;
+    
     private void Start()
     {
         _seePlayer = false;
@@ -66,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if (state == EnemyState.Patrol)
         {
-            if (_path.Count == 0)
+            if (_path.Count == 0 && !_waitingForPath)
             {
                 if(_observing == null) _observing = StartCoroutine(OnDestinationArrived(true));
                 _pathDestValid = false;
@@ -97,6 +99,7 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator OnDestinationArrived(bool observe)
     {
+        _waitingForPath = true;
         if (observe)
         {
             state = EnemyState.Observe;
@@ -122,11 +125,7 @@ public class EnemyMovement : MonoBehaviour
                 break;
             }
             case EnemyMode.Idle:
-                _destination = _spawn + Random.insideUnitCircle * maxDefendRadius;
-                while (!_pathfinding.PathExist(_rb.position, _destination))
-                {
-                    _destination = _spawn + Random.insideUnitCircle * maxDefendRadius;
-                }
+                _destination = _pathfinding.FindNearestWalkable(_spawn + Random.insideUnitCircle * maxDefendRadius);
                 break;
             case EnemyMode.Defend:
                 _destination = _spawn;
@@ -144,15 +143,16 @@ public class EnemyMovement : MonoBehaviour
         _path.Clear();
         // Debug.Log(_pathfinding.PathExist(_rb.position,_destination));
         var path = _pathfinding.GetPath(pathStart, Vector2Int.RoundToInt(_destination));
-        Debug.Log(path.Count);
         state = EnemyState.Patrol;
-        if(path == null) Debug.LogError("PAth null");
+        if(path == null) SetDestination();
         // if (mode == EnemyMode.Defend && path.Count <= 1) return;
-        foreach (var dest in path)
-        {
-            _path.Enqueue(dest);
-        }
+        if (path != null)
+            foreach (var dest in path)
+            {
+                _path.Enqueue(dest);
+            }
 
+        _waitingForPath = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

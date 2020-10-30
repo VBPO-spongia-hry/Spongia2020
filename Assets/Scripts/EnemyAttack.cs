@@ -1,11 +1,17 @@
 using System;
 using System.Collections;
+using System.Globalization;
 using System.Linq;
+using Environment;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum AttackMode {Melee, Ranged}
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour, IDamageable
 {
+    public int maxHealth;
+    private int _health;
+    public Slider healthSlider;
     public int damage;
     public float fireRate;
     public AttackMode attackMode;
@@ -14,9 +20,13 @@ public class EnemyAttack : MonoBehaviour
     private EnemyMovement _movement;
     private float _timer = 0;
     private float _nextAttack;
+    
     private void Start()
     {
         _movement = GetComponent<EnemyMovement>();
+        healthSlider.maxValue = maxHealth;
+        _health = maxHealth;
+        healthSlider.value = _health;
     }
 
     private void Update()
@@ -31,6 +41,11 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+    private void OnMouseDown()
+    {
+        ApplyDamage(5);
+    }
+
     private void Attack(Vector2 destination)
     {
         //TODO: play attack anim
@@ -43,7 +58,7 @@ public class EnemyAttack : MonoBehaviour
                 {
                     if (coll.CompareTag("Player"))
                     {
-                        coll.GetComponent<PlayerVitals>().ApplyDamage(damage);
+                        coll.GetComponent<IDamageable>().ApplyDamage(damage);
                         break;
                     }
                 }
@@ -57,5 +72,19 @@ public class EnemyAttack : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        _health -= damage;
+        healthSlider.value = _health;
+        if(_health <= 0) Dead();
+    }
+
+    public void Dead()
+    {
+        transform.parent.GetComponent<EnemySpawner>().destroyed++;    
+        //TODO: death anim / sound
+        Destroy(gameObject);
     }
 }

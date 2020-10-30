@@ -19,27 +19,27 @@ public class SaveData
 [System.Serializable]
 public static class GameSaver
 {
-    private static string path { get { return Application.persistentDataPath; } }
-    private static SaveData data = null;
+    private static string Path => Application.persistentDataPath;
+    private static SaveData _data;
 
     public static SaveData LoadGame()
     {
         SaveData saveData;
-        if(data != null)
+        if(_data != null)
         {
-            return data;
+            return _data;
         }
-        if (File.Exists(path+"/gamesave.td"))
+        if (File.Exists(Path+"/gamesave.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(path + "/gamesave.td", FileMode.Open);
+            FileStream file = File.Open(Path + "/gamesave.save", FileMode.Open);
             file.Position = 0;
             saveData = (SaveData)bf.Deserialize(file);
             file.Close();
 #if UNITY_EDITOR
             saveData.name = "test";
 #endif
-            data = saveData;
+            _data = saveData;
             return saveData;
         }
         else
@@ -49,13 +49,13 @@ public static class GameSaver
         }
     }
 
-    public static void Savegame(SaveData _data)
+    public static void Savegame(SaveData data)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(path + "/gamesave.td");
-        bf.Serialize(file, _data);
+        FileStream file = File.Create(Path + "/gamesave.save");
+        bf.Serialize(file, data);
         Debug.Log("Game Saved");
-        data = _data;
+        _data = data;
         file.Close();
     }
 }

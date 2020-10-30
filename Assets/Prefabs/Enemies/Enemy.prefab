@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5014218107796116212}
   - component: {fileID: 4907423386871622525}
   - component: {fileID: 3253917601241782514}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 8586404021379476123}
   - component: {fileID: 5650171487947884562}
   - component: {fileID: 8393961186938826975}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7644558465197166507}
   - component: {fileID: 6382041475000800313}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 1895592437873338878}
   - component: {fileID: 2845290296319774644}
   - component: {fileID: 8853090419915488488}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5142789479103480828}
   - component: {fileID: 1585116945005653325}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 3367928297285580457}
   - component: {fileID: 1722758987984431265}
   - component: {fileID: 5499550030826139776}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 8059958088982626116}
   - component: {fileID: 8059958088982626117}
   - component: {fileID: 3930366682980058841}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71276379c31f739e7b9176ae5b28adcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
+  mode: 0
   speed: 5
   followSpeed: 4
   attackRange: 2
@@ -762,6 +762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881f6ebd9af3473185a657e8216e5c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
+  healthSlider: {fileID: 1585116945005653325}
   damage: 5
   fireRate: 3
   attackMode: 0
@@ -776,7 +778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4691154451995784618}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

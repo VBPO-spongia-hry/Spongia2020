@@ -17,7 +17,6 @@ namespace Environment
 
         private void Start()
         {
-            current = locations[0];
             foreach (var location in locations)
             {
                 if(location != current) location.gameObject.SetActive(false);
@@ -25,7 +24,12 @@ namespace Environment
         }
         private void Awake()
         {
-            if(Instance != null) Destroy(Instance.gameObject);
+            current = locations[0];
+            if(Instance != null)
+            {
+                Destroy(Instance.gameObject);
+                Debug.LogError("Multiple Map objects, destroying old one");
+            }
             Instance = this;
         }
 

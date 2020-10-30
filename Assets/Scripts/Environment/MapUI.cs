@@ -29,7 +29,9 @@ namespace Environment
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (!unlocked) return;
+            if (!unlocked || Map.Instance.current == location) return;
+            if (_tooltipShow != null) StopCoroutine(_tooltipShow);
+            Inventory.Instance.tooltip.gameObject.SetActive(false);
             map.Travel(location.locationName);    
         }
 
