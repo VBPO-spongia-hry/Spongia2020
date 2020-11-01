@@ -71,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if (state == EnemyState.Patrol)
         {
-            if (_path.Count == 0 && !_waitingForPath)
+            if (_path.Count == 0)
             {
                 if(_observing == null) _observing = StartCoroutine(OnDestinationArrived(true));
                 _pathDestValid = false;
@@ -108,7 +108,6 @@ public class EnemyMovement : MonoBehaviour
         {
             state = EnemyState.Observe;
             _rb.velocity = Vector2.zero;
-            Debug.Log("Arrived");
             //TODO: otacanie a hladanie hraca
             yield return new WaitForSeconds(observeTime);
         }
@@ -162,7 +161,6 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(!other.CompareTag("Player")) return;
-        Debug.Log("I see player");
         _seePlayer = true;
         if(_observing != null) StopCoroutine(_observing);
         _observing = null;
@@ -173,12 +171,8 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        Debug.Log("Player escaped");
         _seePlayer = false;
         state = EnemyState.Patrol;
-        //if (mode == EnemyMode.Idle || mode == EnemyMode.Defend) _destination = _spawn;
-        //else _destination = waypoints[_waypointIndex].position;
-        //SetDestination();
     }
 
     private void OnTriggerStay2D(Collider2D other)

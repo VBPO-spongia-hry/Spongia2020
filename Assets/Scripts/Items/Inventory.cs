@@ -52,7 +52,13 @@ namespace Items
             get => protectionSlot.Item;
             set => protectionSlot.Item = value;
         }
-        public Item weapon;
+
+        public InventoryItem weaponSlot;
+        public Item Weapon
+        {
+            get => weaponSlot.Item;
+            set => weaponSlot.Item = value;
+        }
         public InventoryItem backpackSlot;
         public Item Backpack
         {

@@ -10,6 +10,7 @@ namespace Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("frontSkeleton"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("sideSkeleton"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("backSkeleton"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("flashlight"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("speed"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("followSpeed"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("attackRange"));

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Globalization;
 using System.Linq;
 using Environment;
+using Items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,8 @@ public class EnemyAttack : MonoBehaviour, IDamageable
     public int maxHealth;
     private int _health;
     public Slider healthSlider;
-    public int damage;
-    public float fireRate;
-    public AttackMode attackMode;
-    public float meleeRange;
-    public GameObject projectile;
+    public Item weapon;
+    public GameObject[] itemsDropped;
     private EnemyMovement _movement;
     private float _timer = 0;
     private float _nextAttack;
@@ -36,29 +34,24 @@ public class EnemyAttack : MonoBehaviour, IDamageable
         _timer += Time.deltaTime;
         if (_timer > _nextAttack)
         {
-            _nextAttack += fireRate;
+            _nextAttack += weapon.fireRate;
             Attack(_movement.Player.position);
         }
     }
-
-    private void OnMouseDown()
-    {
-        ApplyDamage(5);
-    }
-
-    private void Attack(Vector2 destination)
+    
+    private void Attack(Vector3 destination)
     {
         //TODO: play attack anim
-        switch (attackMode)
+        switch (weapon.mode)
         {
             case AttackMode.Melee:
             {
-                var colliders = Physics2D.OverlapCircleAll(transform.position, meleeRange);
+                var colliders = Physics2D.OverlapCircleAll(transform.position, weapon.range);
                 foreach (var coll in colliders)
                 {
                     if (coll.CompareTag("Player"))
                     {
-                        coll.GetComponent<IDamageable>().ApplyDamage(damage);
+                        coll.GetComponent<IDamageable>().ApplyDamage(weapon.damage);
                         break;
                     }
                 }
@@ -66,8 +59,11 @@ public class EnemyAttack : MonoBehaviour, IDamageable
             }
             case AttackMode.Ranged:
                 var transform1 = transform;
-                Instantiate(projectile, transform1.position, transform1.rotation);
-                //TODO: implement projectiles
+                var bullet = Instantiate(weapon.projectile, transform1.position, transform1.rotation).GetComponent<Projectile>();
+                bullet.Source = weapon;
+                bullet.Direction = (transform1.position - destination).normalized;
+                bullet.Fired = transform1;
+                bullet.IsFriendly = false;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -83,7 +79,11 @@ public class EnemyAttack : MonoBehaviour, IDamageable
 
     public void Dead()
     {
-        transform.parent.GetComponent<EnemySpawner>().destroyed++;    
+        transform.parent.GetComponent<EnemySpawner>().destroyed++;
+        foreach (var o in itemsDropped)
+        {
+            Instantiate(o, transform.position, Quaternion.identity);
+        }
         //TODO: death anim / sound
         Destroy(gameObject);
     }

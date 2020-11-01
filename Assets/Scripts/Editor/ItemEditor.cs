@@ -21,6 +21,8 @@ namespace Editor
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("damage"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("fireRate"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("range"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("mode"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("projectile"));
                     break;
                 case 2:
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("toughness"));

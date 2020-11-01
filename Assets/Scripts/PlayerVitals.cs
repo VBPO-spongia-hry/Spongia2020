@@ -19,15 +19,34 @@ public class PlayerVitals : MonoBehaviour, IDamageable
     private float _timer;
     private float _nextHungerUpdate;
     private float _nextInfectionUpdate;
-    
-    
+    private float _nextAttack;
+    private Item Weapon => inventory.Weapon;
+
+
     private void Update()
     {
         if(InputHandler.DisableInput) return;
         _timer += Time.deltaTime;
         UpdateVitals();
+        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Space))
+        {
+            Attack();
+        }
     }
 
+    private void Attack()
+    {
+        if (_timer > _nextAttack)
+        {
+            _nextAttack = _timer + Weapon.fireRate;
+            var attackDestinaition =Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var movement = GetComponent<PlayerMovement>();
+            if(movement.Velocity.magnitude < .1f) movement.SetDirection((attackDestinaition - transform.position).normalized);
+            Attack(attackDestinaition);
+            
+        }
+    }
+    
     private void UpdateVitals()
     {
         if (_timer >= _nextHungerUpdate)
@@ -73,5 +92,37 @@ public class PlayerVitals : MonoBehaviour, IDamageable
     public void Dead()
     {
         
+    }
+    
+    private void Attack(Vector3 destination)
+    {
+        //TODO: play attack anim
+        switch (Weapon.mode)
+        {
+            case AttackMode.Melee:
+            {
+                var colliders = Physics2D.OverlapCircleAll(transform.position, Weapon.range);
+                foreach (var coll in colliders)
+                {
+                    if (coll.CompareTag("Player"))
+                    {
+                        coll.GetComponent<IDamageable>().ApplyDamage(Weapon.damage);
+                        break;
+                    }
+                }
+                break;
+            }
+            case AttackMode.Ranged:
+                var transform1 = transform;
+                var bullet = Instantiate(Weapon.projectile, transform1.position, transform1.rotation).GetComponent<Projectile>();
+                bullet.IsFriendly = true;
+                bullet.Source = Weapon;
+                bullet.Fired = transform1;
+                bullet.StartingVelocity = GetComponent<PlayerMovement>().Velocity;
+                bullet.Direction = (transform1.position - destination).normalized;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }

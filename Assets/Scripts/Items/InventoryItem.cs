@@ -84,8 +84,8 @@ namespace Items
                     Inventory.Instance.Protection = _item;
                     break;
                 case ItemType.Weapon:
-                    if(Inventory.Instance.weapon != null) return;
-                    Inventory.Instance.weapon = _item;
+                    if(Inventory.Instance.Weapon != null) return;
+                    Inventory.Instance.Weapon = _item;
                     break;
                 case ItemType.Armor:
                     if(Inventory.Instance.Armor != null) return;

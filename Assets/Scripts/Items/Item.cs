@@ -23,11 +23,14 @@ namespace Items
         public ItemType type;
         public int damage;
         public float fireRate;
+        public AttackMode mode;
         public float range;
+        public GameObject projectile;
         [Range(0,1)]
         public float toughness;
         [Range(0,1)]
         public float protectionLevel;
         public int backpackCapacity;
+        
     }
 }

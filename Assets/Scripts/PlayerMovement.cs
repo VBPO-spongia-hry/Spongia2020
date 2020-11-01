@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject frontSkeleton;
     public GameObject backSkeleton;
     public static IInteractable _interactable;
-
+    public Vector2 Velocity => InputHandler.GetMovement() * playerSpeed;
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -22,10 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if(InputHandler.DisableInput) return;
-        var velocity = InputHandler.GetMovement() * playerSpeed;
-        _rb.MovePosition(_rb.position + velocity);
+        _rb.velocity = Vector2.zero;
+        _rb.MovePosition(_rb.position + Velocity);
         var direction = InputHandler.GetMovement().normalized;
-        if (velocity.magnitude > 0)
+        if (Velocity.magnitude > 0)
         {
             flashlight.rotation = Quaternion.Slerp(flashlight.rotation,
                 Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90),
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         _camera.position = Vector3.Lerp(_camera.position, new Vector3(position.x, position.y,-2), playerSpeed * Time.deltaTime);
     }
 
-    private void SetDirection(Vector2 movement)
+    public void SetDirection(Vector2 movement)
     {
         var directions = new [] { Vector2.down, Vector2.right, Vector2.left, Vector2.up, };
         var mindelta = float.PositiveInfinity;
