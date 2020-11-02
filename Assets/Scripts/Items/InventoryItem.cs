@@ -97,6 +97,8 @@ namespace Items
                     break;
                 case ItemType.Other:
                     return;
+                case ItemType.PowerUp:
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

@@ -18,6 +18,7 @@ namespace Missions
     {
         public MissionType type;
         public string missionName;
+        public string description;
         public string itemName;
         [NonSerialized]
         public bool Complete = false;
@@ -62,6 +63,11 @@ namespace Missions
         {
             unlocked = needToUnlock.All(e => e.unlocked);
             if(unlocked) MissionManager.Instance.OnMissionUpdate(this);
+        }
+
+        public int GetProgress()
+        {
+            return _progress;
         }
     }
 }

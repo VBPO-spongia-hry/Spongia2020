@@ -23,7 +23,6 @@ public class Pathfinding : MonoBehaviour
     private static List<Pathfinding> _pathfinders;
     public static Pathfinding GetPathfinding()
     {
-        Debug.Log(Map.Instance.current);
         return Map.Instance.current.pathfinding;
     }
 
@@ -81,7 +80,6 @@ public class Pathfinding : MonoBehaviour
     
     private List<Vector2> FindPath(Vector2Int start, Vector2Int destination)
     {
-        Debug.Log("Calling FindPath");
         var openList = new List<GridNode>();
         var closedList = new List<GridNode>();
         openList.Add(Graph[start.x, start.y]);

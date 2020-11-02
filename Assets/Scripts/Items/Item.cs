@@ -10,6 +10,7 @@ namespace Items
         Weapon,
         Armor,
         InventoryUpgrade,
+        PowerUp,
         Other,
     }
     [CreateAssetMenu(fileName = "Item",menuName = "Item", order = 2)]

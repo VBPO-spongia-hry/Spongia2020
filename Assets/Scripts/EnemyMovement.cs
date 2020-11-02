@@ -22,7 +22,6 @@ public class EnemyMovement : MonoBehaviour
     public enum EnemyState {Patrol, Observe, Follow, Attack}
     [HideInInspector]
     public EnemyState state;
-    private bool _seePlayer;
     private Rigidbody2D _rb;
     private int _waypointIndex;
     private Vector2 _spawn;
@@ -43,7 +42,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        _seePlayer = false;
         _rb = GetComponent<Rigidbody2D>();
         _spawn = transform.position;
         Player = GameObject.FindWithTag("Player").transform;
@@ -161,7 +159,6 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(!other.CompareTag("Player")) return;
-        _seePlayer = true;
         if(_observing != null) StopCoroutine(_observing);
         _observing = null;
         state = EnemyState.Follow;
@@ -171,14 +168,12 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        _seePlayer = false;
         state = EnemyState.Patrol;
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if(!other.CompareTag("Player")) return;
-        _seePlayer = true;
         if (Vector2.Distance(_rb.position, Player.position) < attackRange)
         {
             state = EnemyState.Attack;

@@ -1,8 +1,6 @@
 using System;
 using Items;
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
 public class Projectile : MonoBehaviour
 {
@@ -46,7 +44,6 @@ public class Projectile : MonoBehaviour
             if (other.TryGetComponent(out EnemyMovement _) && !IsFriendly) return;
             if (other.TryGetComponent(out PlayerMovement _) && IsFriendly) return;
             hit.ApplyDamage(Source.damage);
-            Debug.Log(other.name);
             _hasHit = true;
             Destroy(gameObject);
         }

@@ -69,6 +69,7 @@ namespace Environment
                         transform1).GetComponent<EnemyMovement>();
                     enemy.waypoints = _waypointArray;
                     yield return new WaitForSeconds(wave.spawnInterval);
+                    yield return new WaitWhile(() => InputHandler.DisableInput);
                 }
                 yield return new WaitForSeconds(wave.endWait);
             }

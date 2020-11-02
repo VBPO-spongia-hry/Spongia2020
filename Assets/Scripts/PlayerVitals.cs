@@ -14,6 +14,7 @@ public class PlayerVitals : MonoBehaviour, IDamageable
     public int infectionHealthDropAmount = 5;
     public float infectionDropRate = 2;
     public Inventory inventory;
+    public Item defaultWeapon;
     [NonSerialized]
     public int InfectionStrength;
     private float _timer;
@@ -38,11 +39,12 @@ public class PlayerVitals : MonoBehaviour, IDamageable
     {
         if (_timer > _nextAttack)
         {
-            _nextAttack = _timer + Weapon.fireRate;
-            var attackDestinaition =Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var fireRate = Weapon == null ? defaultWeapon.fireRate : Weapon.fireRate;
+            _nextAttack = _timer + fireRate;
+            var attackDestination =Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var movement = GetComponent<PlayerMovement>();
-            if(movement.Velocity.magnitude < .1f) movement.SetDirection((attackDestinaition - transform.position).normalized);
-            Attack(attackDestinaition);
+            if(movement.Velocity.magnitude < .1f) movement.SetDirection((attackDestination - transform.position).normalized);
+            Attack(attackDestination);
             
         }
     }
@@ -91,22 +93,26 @@ public class PlayerVitals : MonoBehaviour, IDamageable
 
     public void Dead()
     {
-        
+        InputHandler.DisableInput = true;
+        UIController.Instance.Death();
+        Destroy(gameObject);
     }
     
     private void Attack(Vector3 destination)
     {
+        var weaponMode = Weapon == null ? defaultWeapon.mode : Weapon.mode;
         //TODO: play attack anim
-        switch (Weapon.mode)
+        switch (weaponMode)
         {
             case AttackMode.Melee:
             {
-                var colliders = Physics2D.OverlapCircleAll(transform.position, Weapon.range);
+                var colliders = Physics2D.OverlapCircleAll(transform.position, Weapon == null ? defaultWeapon.range : Weapon.range);
                 foreach (var coll in colliders)
                 {
-                    if (coll.CompareTag("Player"))
+                    if (coll.TryGetComponent(out IDamageable damageable))
                     {
-                        coll.GetComponent<IDamageable>().ApplyDamage(Weapon.damage);
+                        if(coll.CompareTag("Player")) continue;
+                        damageable.ApplyDamage(Weapon == null ? defaultWeapon.damage : Weapon.damage);
                         break;
                     }
                 }
@@ -116,7 +122,7 @@ public class PlayerVitals : MonoBehaviour, IDamageable
                 var transform1 = transform;
                 var bullet = Instantiate(Weapon.projectile, transform1.position, transform1.rotation).GetComponent<Projectile>();
                 bullet.IsFriendly = true;
-                bullet.Source = Weapon;
+                bullet.Source = Weapon == null ? defaultWeapon : Weapon;
                 bullet.Fired = transform1;
                 bullet.StartingVelocity = GetComponent<PlayerMovement>().Velocity;
                 bullet.Direction = (transform1.position - destination).normalized;

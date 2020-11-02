@@ -16,17 +16,17 @@ namespace Environment
 
         public void DisableMap()
         {
-            
+            Map.Disable = true;
         }
 
         public void EnableMap()
         {
-            
+            Map.Disable = false;
         }
 
         public void InteriorEnter()
         {
-                        
+            
         }
 
         public void ExteriorEnter()

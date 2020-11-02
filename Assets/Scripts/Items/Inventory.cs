@@ -120,7 +120,6 @@ namespace Items
         public void RemoveItem(string itemName)
         {
             //if(!ContainsItem(itemName)) return;
-            Debug.Log("Removing " + itemName);
             var item = FindItem(itemName);
             _items.Remove(item);
             Usage -= item.Count * item.Item.spaceRequired;
@@ -140,7 +139,7 @@ namespace Items
 
         public bool ContainsItem(string itemName)
         {
-            return _items.Any(item => item.Item.name == itemName);
+            return _items.Any(item => item.Item.itemName == itemName);
         }
 
         public InventoryItem FindItem(string itemName)

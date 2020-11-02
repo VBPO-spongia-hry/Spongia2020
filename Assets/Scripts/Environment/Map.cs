@@ -13,6 +13,13 @@ namespace Environment
         public Animation travelAnimation;
         public TextMeshProUGUI travelText;
         public static Map Instance;
+        private bool _mapDisabled = false;
+
+        public static bool Disable
+        {
+            get => Instance._mapDisabled;
+            set => Instance._mapDisabled = value;
+        }
         [HideInInspector] public MapLocation current;
 
         private void Start()
@@ -35,6 +42,7 @@ namespace Environment
 
         public void Travel(string locationName)
         {
+            if(_mapDisabled) return;
             InputHandler.DisableInput = true;
             foreach (var location in locations)
             {

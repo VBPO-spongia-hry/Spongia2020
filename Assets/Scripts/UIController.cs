@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class UIController : MonoBehaviour
     public PlayerVitals vitals;
     public Button interactionButton;
     public static UIController Instance;
+    public GameObject deathUI;
 
     private void OnEnable()
     {
@@ -26,6 +28,7 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         _menuTabs = menuUI.GetComponent<TabUI>();
+        deathUI.SetActive(false);
         hungerSlider.maxValue = vitals.hunger;
         infectionSlider.maxValue = vitals.infection;
         interactionButton.onClick.AddListener(() => PlayerMovement._interactable?.Interact());
@@ -65,4 +68,22 @@ public class UIController : MonoBehaviour
     {
         menuUI.SetActive(false);
     }
+
+    public void Death()
+    {
+        deathUI.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+        InputHandler.DisableInput = false;
+    }
+
+    public void Respawn()
+    {
+        SceneManager.LoadScene(1);
+        InputHandler.DisableInput = false;
+    }
+    
 }

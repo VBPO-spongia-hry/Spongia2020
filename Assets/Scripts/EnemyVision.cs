@@ -35,6 +35,7 @@ public class EnemyVision : MonoBehaviour
         var hit = Physics2D.Raycast(transform.position, transform.position - _movement.Player.position);
         if (!_seePlayer)
         {
+            if (hit.collider == null) return;
             if (hit.collider.CompareTag("Player"))
             {
                 //_movement.OnSeePlayer();
