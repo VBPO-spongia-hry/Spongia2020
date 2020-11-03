@@ -10,6 +10,7 @@ namespace Items
     public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Item _item;
+        public Button useButton;
         public Item Item
         {
             get => _item;
@@ -31,6 +32,24 @@ namespace Items
                 countText.text = _count.ToString();
             }
         }
+
+        private void Start()
+        {
+            if(!isLoadoutSlot) useButton.gameObject.SetActive(Item.type == ItemType.PowerUp);
+        }
+
+        private void Update()
+        {
+            if(!isLoadoutSlot) useButton.interactable = Inventory.Instance.CanUsePowerUp;
+        }
+
+        public void UsePowerUp()
+        {
+            if(_tooltipRoutine != null) StopCoroutine(_tooltipRoutine);
+            Inventory.Instance.HideTooltip();
+            Inventory.Instance.UsePowerUp(Item);
+        }
+
         public Text countText;
         private static Coroutine _tooltipRoutine;
         
@@ -98,7 +117,7 @@ namespace Items
                 case ItemType.Other:
                     return;
                 case ItemType.PowerUp:
-                    break;
+                    return;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

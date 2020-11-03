@@ -31,6 +31,11 @@ namespace Editor
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("backpackCapacity"));
                     break;
                 case 4:
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("powerUpType"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("powerUpMultiplier"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("powerUpCooldown"));
+                    break;
+                case 5:
                     break;
             }
 

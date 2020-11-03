@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ROAD_1
+  m_Name: KACHLICKY_2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 0c7fc68cd2623e3ff87574a286926a91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0edc6fc3db04013e9d1efd5d55a2b5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

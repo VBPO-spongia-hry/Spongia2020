@@ -38,6 +38,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.CompareTag("GameTriggers")) return;
         if(_hasHit) return;
         if (other.TryGetComponent(out IDamageable hit))
         {
@@ -45,7 +46,7 @@ public class Projectile : MonoBehaviour
             if (other.TryGetComponent(out PlayerMovement _) && IsFriendly) return;
             hit.ApplyDamage(Source.damage);
             _hasHit = true;
-            Destroy(gameObject);
         }
+        Destroy(gameObject);  
     }
 }

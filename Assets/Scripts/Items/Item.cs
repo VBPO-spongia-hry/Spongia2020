@@ -13,6 +13,16 @@ namespace Items
         PowerUp,
         Other,
     }
+
+    [Serializable]
+    public enum PowerUpType
+    {
+        Health,
+        Hunger,
+        Hygiene,
+        Damage,
+        Speed
+    }
     [CreateAssetMenu(fileName = "Item",menuName = "Item", order = 2)]
     public class Item : ScriptableObject
     {
@@ -32,6 +42,8 @@ namespace Items
         [Range(0,1)]
         public float protectionLevel;
         public int backpackCapacity;
-        
+        public float powerUpCooldown;
+        public PowerUpType powerUpType;
+        public float powerUpMultiplier = 1;
     }
 }

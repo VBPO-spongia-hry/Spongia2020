@@ -1,8 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management.Instrumentation;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Missions;
 using TMPro;
 using UnityEngine;
@@ -18,11 +17,14 @@ namespace Items
         private List<InventoryItem> _items;
         public Slider capacitySlider;
         public TextMeshProUGUI capacityText;
+        public GameObject powerUpIcon;
+        [NonSerialized] public bool CanUsePowerUp = true;
         
         private void Start()
         {
             Usage = 0;
             capacitySlider.maxValue = 100;
+            powerUpIcon.SetActive(false);
         }
 
         public int Capacity => Backpack == null ? 100 : Backpack.backpackCapacity;
@@ -116,6 +118,18 @@ namespace Items
             }
             return Capacity >= item.spaceRequired + Usage;
         }
+
+        public void RemoveOne(string itemName)
+        {
+            var item = FindItem(itemName);
+            if(item.Count == 1)
+            {
+                RemoveItem(itemName);
+                return;
+            }
+            item.Count--;
+            Usage -= item.Item.spaceRequired;
+        }
         
         public void RemoveItem(string itemName)
         {
@@ -160,6 +174,46 @@ namespace Items
         public void HideTooltip()
         {
             tooltip.SetActive(false);
+        }
+
+        public void UsePowerUp(Item item)
+        {
+            if (!ContainsItem(item.itemName) || !CanUsePowerUp) return;
+            CanUsePowerUp = false;
+            RemoveOne(item.itemName);
+            StartCoroutine(PowerUpUse(item));
+        }
+
+        private IEnumerator PowerUpUse(Item item)
+        {
+            powerUpIcon.GetComponent<Image>().sprite = item.icon;
+            powerUpIcon.SetActive(true);
+            var vitals = GetComponent<PlayerVitals>();
+            switch (item.powerUpType)
+            {
+                case PowerUpType.Hunger:
+                    vitals.hunger += (int)item.powerUpMultiplier;
+                    break;
+                case PowerUpType.Hygiene:
+                    vitals.infection += (int) item.powerUpMultiplier;
+                    break;
+                case PowerUpType.Health:
+                    vitals.health += (int) item.powerUpMultiplier;
+                    break;
+                case PowerUpType.Speed:
+                    GetComponent<PlayerMovement>().playerSpeed *= item.powerUpMultiplier;
+                    break;
+                case PowerUpType.Damage:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            yield return new WaitForSeconds(item.powerUpCooldown);
+            if (item.powerUpType == PowerUpType.Speed)
+                GetComponent<PlayerMovement>().playerSpeed /= item.powerUpMultiplier;
+            powerUpIcon.SetActive(false);
+            CanUsePowerUp = true;
         }
     }
 }

@@ -28,10 +28,10 @@ public class TabUI : MonoBehaviour
         foreach (var button in tabButtons)
         {
             button.GetComponent<Image>().color = deselectedColor;
-            button.GetComponentInChildren<Text>().color = Color.white;
+//            button.GetComponentInChildren<Text>().color = Color.white;
         }
         tabs[tabIndex].SetActive(true);
         tabButtons[tabIndex].GetComponent<Image>().color = selectedColor;
-        tabButtons[tabIndex].GetComponentInChildren<Text>().color = Color.black;
+//        tabButtons[tabIndex].GetComponentInChildren<Text>().color = Color.black;
     }
 }

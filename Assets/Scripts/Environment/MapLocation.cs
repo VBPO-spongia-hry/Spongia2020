@@ -1,4 +1,5 @@
 using System.Security.AccessControl;
+using Dialogues;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -24,6 +25,11 @@ namespace Environment
             Map.Disable = false;
         }
 
+        public void BeginDialogue(Dialogue dialogue)
+        {
+            DialogueManager.Singleton.BeginDialogue(dialogue);
+        }
+        
         public void InteriorEnter()
         {
             

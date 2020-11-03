@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   missionName: Example Combat Mission
+  description: 
   itemName: 
-  complete: 0
   unlocked: 1
   needToUnlock: []
   failTime: 0
