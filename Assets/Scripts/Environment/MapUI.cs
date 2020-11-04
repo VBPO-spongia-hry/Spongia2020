@@ -1,5 +1,9 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Items;
+using Missions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,8 +16,26 @@ namespace Environment
         public GameObject hoverEffect;
         public Map map;
         public MapLocation location;
+        public GameObject exclamationMark;
         private Coroutine _tooltipShow;
+        private static List<MapUI> _instances;
         
+        public static void UpdateTasks()
+        {
+            foreach (var mapUi in _instances)
+            {
+                var isNeeded = MissionManager.Instance.active.Any(e =>
+                    e.locationName.Split(';').Any(name => name == mapUi.location.locationName));
+                mapUi.exclamationMark.SetActive(isNeeded);
+            }
+        }
+
+        private void OnEnable()
+        {
+            if(_instances == null) _instances = new List<MapUI>();
+            _instances.Add(this);
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             if(unlocked) hoverEffect.SetActive(true);
