@@ -8,5 +8,6 @@ namespace Dialogues
         public Sprite baseImage;
         public string characterName;
         public string job;
+        public Sprite[] emotions;
     }
 }

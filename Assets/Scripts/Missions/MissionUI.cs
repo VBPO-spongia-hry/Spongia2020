@@ -12,7 +12,7 @@ namespace Missions
 
         private void Start()
         {
-            headerText.SetText($"{mission.missionName}: {mission.locationName}");
+            headerText.SetText($"{mission.missionName}: {mission.locationName.Replace(";", ", ")}");
             descriptionText.SetText($"{mission.description} {GetMissionProgress()}");
         }
 

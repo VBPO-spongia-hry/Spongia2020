@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - msg: TVOJA MAMKA
-    characterIndex: 0
+    emotionIndex: 0
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
   - msg: Dobre.
-    characterIndex: 1
+    emotionIndex: 1
     character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: OK
-    characterIndex: 0
+    emotionIndex: 3
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
   - msg: OK
-    characterIndex: 0
+    emotionIndex: 1
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
   - msg: OK
-    characterIndex: 0
+    emotionIndex: 2
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
   - msg: OK
-    characterIndex: 0
+    emotionIndex: 3
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
   - msg: OK
-    characterIndex: 0
+    emotionIndex: 0
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
