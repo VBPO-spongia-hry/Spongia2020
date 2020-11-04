@@ -646,6 +646,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroceryStore
       objectReference: {fileID: 0}
+    - target: {fileID: 644066804619737557, guid: 385d2041ade27570498df7500b30e58f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 644066804619737559, guid: 385d2041ade27570498df7500b30e58f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -956,7 +961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 907498008, guid: fee8bdb1378a7008a88fdd20071ecb8d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -873.5
+      value: -873.49976
       objectReference: {fileID: 0}
     - target: {fileID: 907498008, guid: fee8bdb1378a7008a88fdd20071ecb8d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1223,11 +1228,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6523557312762622238, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6523557313155117448, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1273,11 +1273,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6523557313294119897, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6523557313404271472, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1296,11 +1291,6 @@ PrefabInstance:
     - target: {fileID: 6523557313404271472, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6523557313404271472, guid: fee8bdb1378a7008a88fdd20071ecb8d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6523557313715860788, guid: fee8bdb1378a7008a88fdd20071ecb8d,
