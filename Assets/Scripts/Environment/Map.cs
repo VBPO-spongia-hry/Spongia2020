@@ -44,10 +44,7 @@ namespace Environment
         {
             if(_mapDisabled) return;
             InputHandler.DisableInput = true;
-            foreach (var location in locations)
-            {
-                location.gameObject.SetActive(false);
-            }
+            
             var loc = locations.First(e => e.locationName == locationName);
             if (loc == current) return;
             travelAnimation.Play("TravelShow");
@@ -59,6 +56,10 @@ namespace Environment
         {
             current = location;
             yield return new WaitWhile(() => travelAnimation.isPlaying);
+            foreach (var l in locations)
+            {
+                l.gameObject.SetActive(false);
+            }
             location.gameObject.SetActive(true);
             var position = location.spawnLocation.position;
             player.position = position;
