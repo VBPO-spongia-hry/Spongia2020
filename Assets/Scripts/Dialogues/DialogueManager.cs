@@ -87,6 +87,8 @@ namespace Dialogues
             _showingDialogue = true;
             dialogueAnimator.SetTrigger(DialogueStart);
             dialogueAnimator.SetBool(Viewing,true);
+            character1.transform.GetChild(1).GetComponent<Image>().sprite = _character1.emotions[0];
+            character2.transform.GetChild(1).GetComponent<Image>().sprite = _character2.emotions[0];
             dialogue.Reset();
             yield return new WaitForSeconds(1f);
             for (int i = 0; i < dialogue.messages.Length; i++)
@@ -95,7 +97,6 @@ namespace Dialogues
             }
             dialogueAnimator.SetBool(Viewing, false);
             InputHandler.DisableInput = false;
-            Debug.Log("End");
             _showingDialogue = false;
             vitalsUI.SetActive(true);
             controlsUI.SetActive(true);
@@ -107,14 +108,25 @@ namespace Dialogues
             dialogueAnimator.SetBool(Isfirst, _character1 == msg.character);
             dialogueAnimator.SetTrigger(Next);
             dialogueAnimator.ResetTrigger(Skip);
+            updating.text = "";
+            if (_character1 == msg.character)
+            {
+                character1.transform.GetChild(1).GetComponent<Image>().sprite = _character1.emotions[msg.emotionIndex];
+            }
+            else
+            {
+                character2.transform.GetChild(1).GetComponent<Image>().sprite = _character2.emotions[msg.emotionIndex];
+            }
+            yield return new WaitUntil(() => dialogueAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
             string displayed = "";
             foreach (var t in msg.msg)
             {
                 displayed += t;
                 updating.text = displayed;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.1f);
                 if (!Input.anyKeyDown) continue;
                 updating.text = msg.msg;
+                break;
             }
             yield return new WaitUntil(() => dialogueAnimator.GetCurrentAnimatorStateInfo(0).IsName("UIShown"));
         }

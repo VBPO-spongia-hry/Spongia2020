@@ -27,7 +27,7 @@ namespace Missions
         public int failTime;
         public string locationName;
         public int completion;
-        private int _progress;
+        [NonSerialized] private int _progress = 0;
 
         public void UpdateProgress()
         {

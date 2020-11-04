@@ -36,22 +36,25 @@ Na vytvorenie itemu chod do precinku `ScriptableObjects/items` a skopiruj nejaky
 * `spaceRequired` - kolko miesta zaberie tento item v inventari
 * `icon` - ikonka itemu
 * `type` - typ itemu 
-  * Weapon - item sa bude dat equipnut ako zbran
+  * __Weapon__ - item sa bude dat equipnut ako zbran
    * `damage` - to je hadam jasne
    * `fireRate` - ako casto vieme zbran pouzivat (cooldown po pouziti)
    * `range` - ako daleko vieme dostrelit
-  * Armor - da sa equipnut ako armor
+  * __Armor__ - da sa equipnut ako armor
    * `toughness` - ake percento damagu absorbuje armor (`damage co dostanes = povodny damage * (1-toughness)`)
-  * InventoryUpgrade - da sa equipnut ako batoh
+  * __InventoryUpgrade__ - da sa equipnut ako batoh
    * `backpackCapacity` - kapacita inventara, ak budem mat tento item equipnuty
-  * Protection - da sa equipnut do slotu protection
+  * __Protection__ - da sa equipnut do slotu protection
    * `protectionLevel` - percento davky nakazenia, ktore ti tento item absorbuje (funguje rovnako ako armor)
-  * other - tieto itemy su stackovatelne (mozes ich mat viac naraz), budu sluzit na craftenie a plnenie misii
+  * __PowerUp__ - jednorazovy item, ktory ti da nejaky boost
+   * `Multiplier` - o kolko sa ma dana vec zmenit
+   * `Cooldown` - ako dlho sa dany powerUp pouziva
+  * __other__ - tieto itemy su stackovatelne (mozes ich mat viac naraz), budu sluzit na craftenie a plnenie misii
 ## Enemy
 Na vytvorenie noveho enemy chod do `Prefabs/Enemy` a tam nejakeho skopiruj
 ### EnemyMovement
 Toto sluzi na hybanie a logiku enemakov. Kazdy enemy sa nejak hybe a ak uvidi hraca (hrac vojde do jeho triggeru), tak ho zacne nahanat a utocit nanho
-* `speed` - rychlost enemy
+* `speed` - rychlost enemaka
 * `followSpeed` - rychlost, ked prenasleduje hraca
 * `attackRange` - vzdialenost, pri ktorej sa uz nepriblizuje k hracovi (moze utocit)
 * `observeTime` - cas ktory sa obzera okolo ked pride na destinaciu
@@ -62,11 +65,9 @@ Toto sluzi na hybanie a logiku enemakov. Kazdy enemy sa nejak hybe a ak uvidi hr
  * `patrol` - do `waypoints` si zadas checkpointy na ktore sa bude chciet dostat a on ich potom dookola v poradi akom si ich zadal bude prechadzat
 ### EnemyAttack
 Sluzi na attackovanie hraca
-* `damage` - to je asi jasne
-* `fireRate` - rovnako ako pri itemoch
-* `attackMode` - sposob utocenia
- * `melee` - doda damage vsetkym objektom, ktore su znicitelne a su vzdialene najviac `meleeRange` od enemaka
- * `projectile` - enemy spawne projektil, ktory bude letiet ku hracovi. Projektil co sa ma spawnut sa nastavi v `projectile` (projectily este nie su hotove)
+* `Weapon` - item, ktory opisuje zbran enemaka
+* `MaxHealth` - kolko ma enemy zivota
+* `ItemsDropped` - itemy, ktore maju dropnut ked enemy zomrie
 ## Player
 Tu najdes vsetky konstanty co nejak suvisia s hracom
 ### PlayerMovement
@@ -87,3 +88,31 @@ nejake veci suvisiace s hernym prostredim (zatial tu toho vela nie je, casom to 
 ## ContaminedLocation
 Tymto vies zadefinovat kontaminovanu lokaciu (kde bude klesat infectionbar). Lokaciu zadefinujes tak, ze pridas hocijaky 2d collider a zakliknes `isTrigger`
 * `infectionStrength` - sila infikovania (o kolko klesne infectionbar ak je hrac vo vnutri)
+## MapLocation
+* `TravelTime` - kolko sekund ma trvat cestovanie do tejto lokacie
+## TriggerEvents
+Sluzi na spustanie roznych veci ked hrac vojde alebo vyjde z triggeru tohto objektu. Moze sa pouzit na zapnutie dialogov, zacatie spawnovania, rozne vypinanie a zapinanie objektov, ...
+* `TriggerOnce` - ma sa spustit iba raz, alebo kazdy krat ked hrac vojde/vyjde z oblasti
+* `OnEnter/OnExit` - sem vies dragnut jednotlive objekty ktore maju nie co spravit pri vojdeni/vyjdeni
+* __Sample na funkcie__
+ * Ked chcem aby sa mi nieco zacalo spawnovat -> dragnem enemyspawner, selectnem `EnemySpawner>StartSpawning`
+ * Ked chcem aby sa mi updatol progress v nejakej misii -> dragnem konkretnu misiu a selectnem `Mission>UpdateProgress`
+ * Ked chcem spustit dialog -> dragnem tam hlavny objekt lokacie -> selectnem `Maplocation>BeginDialogue` a zvolim ktory dialog chcem zacat
+ * Ked chcem vypnut/zapnut hocijaky objekt -> dragnem ten objket a selectnem `GameObject>SetActive` a zvolim, ci vypnut alebo zapnut
+ * mozem tam dragnut aj nejake AudioSource a selectnut play a ono to potom zacne hrat zvuk, ktory zadas tomu audiosource
+## EnemySpawner
+Spawnovanie enemakov nastava vo wavekach - v kazdej wave nastavim kolko enemakov ma spawnut, dragnem tam objekt enemaka, ktoreho tam chcem spawnut, nastavim interval, ze ako casto sa maju spawnovat, cas ktory cakam po skonceni wave
+* `Mission` - misia, ktoru updatneme ked su vsetci enemaci z tohto spawnera mrtvi
+
+### Dialogy
+V kazdom dialogu mozu byt najviac 2 postavy, ak ich tam bude viac, tak sa dialog nespusti. Dialog sa da vytvorit pomocou `Create>Dialogues>Dialogue`.
+## DialogueCharacter
+Reprezentuje jednu hernu postavu, co vystupuje v dialogoch
+* `BaseImage` - telo postavy - musi byt bez hlavy
+* `CharacterName`, `Job` - opsiuje ako sa vola a co robi
+* `Emotions` - pole hlav danej postavy, ktore reprezentuju jednotlive emocie
+## Dialogue
+V tomto objekte sa nachadza samotny dialog. Pre kazdu spravu treba dodat nasledovne
+* `Msg` - Sprava, co sa hovori
+* `EmotionIndex` - kolkatu emociu ma mat postava, ktora to hovori (cisluje sa od 0)
+* `Character` - postava, co to hovori

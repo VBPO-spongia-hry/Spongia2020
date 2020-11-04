@@ -58,6 +58,7 @@ public class PlayerVitals : MonoBehaviour, IDamageable
             {
                 hunger = 0;
                 health -= foodConsumptionAmount;
+                if(health <= 0) Dead();
             }
 
             _nextHungerUpdate = foodConsumptionRate + _timer;
@@ -72,6 +73,7 @@ public class PlayerVitals : MonoBehaviour, IDamageable
                 if (infection <= 0)
                 {
                     health -= infectionHealthDropAmount;
+                    if(health <= 0) Dead();
                     infection = 0;
                 }
             }

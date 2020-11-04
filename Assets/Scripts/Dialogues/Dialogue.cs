@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Dialogues
@@ -19,7 +20,22 @@ namespace Dialogues
         {
             _messageIndex = 0;
         }
-    
+
+        private void OnValidate()
+        {
+            foreach (var message in messages)
+            {
+                if (message.emotionIndex < 0)
+                {
+                    message.emotionIndex = 0;
+                    continue;
+                }
+                if (message.emotionIndex >= message.character.emotions.Length)
+                {
+                    message.emotionIndex = message.character.emotions.Length - 1;
+                }
+            }
+        }
     }
 
     [System.Serializable]
@@ -27,7 +43,7 @@ namespace Dialogues
     {
         [TextArea(5,10)]
         public string msg;
-        public int characterIndex;
+        public int emotionIndex;
         public DialogueCharacter character;
     }
 }

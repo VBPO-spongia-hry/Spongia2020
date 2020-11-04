@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Environment;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,14 +11,16 @@ namespace Missions
     public class MissionManager : MonoBehaviour
     {
         public Mission[] missions;
-        public List<Mission> active;
+        [NonSerialized] public List<Mission> active;
         public Animation unlockAnim;
         public TextMeshProUGUI unlockHeader;
         public TextMeshProUGUI unlockContent;
+        public GameObject missionPrefab;
+        public Transform missionWindow;
         public Slider taskBar;
 
         private bool _uIshowing;
-        private List<Mission> _unlocked;
+        private List<GameObject> _unlocked;
         private Queue<Mission> _waitingForUiShow;
         private int _gameProgress;
 
@@ -33,6 +36,8 @@ namespace Missions
         {
             taskBar.maxValue = missions.Length;
             taskBar.value = 0;
+            active = new List<Mission>();
+            _unlocked = new List<GameObject>();
             UpdateUnlocked();
         }
 
@@ -70,9 +75,19 @@ namespace Missions
             {
                 active.Remove(mission);
                 _gameProgress++;
+                var m = _unlocked.Find(e => e.GetComponent<MissionUI>().mission == mission);
+                _unlocked.Remove(m);
+                Destroy(m);
                 UpdateUnlocked();
             }
-            else active.Add(mission);
+            else
+            {
+                active.Add(mission);
+                var missionUi = Instantiate(missionPrefab, missionWindow).GetComponent<MissionUI>();
+                missionUi.mission = mission;
+                _unlocked.Add(missionUi.gameObject);
+            }
+            MapUI.UpdateTasks();
             _waitingForUiShow.Enqueue(mission);
         }
         

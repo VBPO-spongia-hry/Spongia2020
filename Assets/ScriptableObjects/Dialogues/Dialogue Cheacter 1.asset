@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71d9923bda4a75ba461416556c0fa8, type: 3}
   m_Name: Dialogue Cheacter 1
   m_EditorClassIdentifier: 
-  baseImage: {fileID: 21300000, guid: ce86bc47273442b46a0a6a8bc6a37c5f, type: 3}
+  baseImage: {fileID: 2539088938815394755, guid: aac5bc28cb2a81fc09efd7491530555d,
+    type: 3}
   characterName: character 2
   job: none
+  emotions:
+  - {fileID: 7729539529392886483, guid: b1ababc3e303c3e6c962143a5ff6e401, type: 3}
+  - {fileID: 7340992458847906124, guid: b1ababc3e303c3e6c962143a5ff6e401, type: 3}
+  - {fileID: -6643977368478943233, guid: b1ababc3e303c3e6c962143a5ff6e401, type: 3}
+  - {fileID: 949529680909827789, guid: b1ababc3e303c3e6c962143a5ff6e401, type: 3}
