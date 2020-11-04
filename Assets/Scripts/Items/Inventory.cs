@@ -85,7 +85,7 @@ namespace Items
         public void AddItem(Item item)
         {
             if(!CanAddItem(item)) return;
-            if (ContainsItem(item.name))
+            if (ContainsItem(item.itemName))
             {
                 var slot = _items.FirstOrDefault(inventoryItem => inventoryItem.Item.itemName == item.itemName);
                 if (slot != null) slot.Count++;

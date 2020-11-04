@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 644066804619737559}
   - component: {fileID: 644066804619737558}
   m_Layer: 0
-  m_Name: GroceryStore
+  m_Name: Hardware Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d0aa24b3c840b6989f273445bdc96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Grocery Store
-  description: Place to get Food & other basic items
+  locationName: Hardware Store
+  description: Here you can get your gear
   travelTime: 5
   spawnLocation: {fileID: 5981459086243480678}
   pathfinding: {fileID: 644066804431656379}
