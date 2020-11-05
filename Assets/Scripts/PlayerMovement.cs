@@ -1,6 +1,7 @@
 using System;
 using Environment;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        flashlight.gameObject.SetActive(Map.Instance.current.ActiveGlobalLight.intensity < .3f);
+        SetFlashlight();
         if(InputHandler.DisableInput) return;
         _rb.velocity = Vector2.zero;
         _rb.MovePosition(_rb.position + Velocity);
@@ -39,6 +40,32 @@ public class PlayerMovement : MonoBehaviour
         {
             _interactable?.Interact();
         }
+    }
+
+    private void SetFlashlight()
+    {
+        flashlight.gameObject.SetActive(Map.Instance.current.ActiveGlobalLight.intensity < .3f);
+        int[] layers;
+        if (Map.Instance.current.IsInInterior)
+        {
+            layers = new[]
+            {
+                SortingLayer.NameToID("Items"),
+                SortingLayer.NameToID("Default"),
+                SortingLayer.NameToID("Interior"),
+            };
+        }
+        else
+        {
+            layers = new[]
+            {
+                SortingLayer.NameToID("Items"),
+                SortingLayer.NameToID("Default"),
+                SortingLayer.NameToID("Environment"),
+            };
+        }
+
+        flashlight.GetComponent<Light2D>().m_ApplyToSortingLayers = layers;
     }
 
     private void LateUpdate()

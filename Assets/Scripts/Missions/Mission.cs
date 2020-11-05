@@ -22,7 +22,7 @@ namespace Missions
         public string itemName;
         [NonSerialized]
         public bool Complete = false;
-        public bool unlocked;
+        [NonSerialized] private bool _unlocked;
         public Mission[] needToUnlock;
         public int failTime;
         public string locationName;
@@ -61,13 +61,20 @@ namespace Missions
 
         public void CheckUnlocked()
         {
-            unlocked = needToUnlock.All(e => e.unlocked);
-            if(unlocked) MissionManager.Instance.OnMissionUpdate(this);
+            _unlocked = needToUnlock.All(e => e.Complete);
+            if(_unlocked) MissionManager.Instance.OnMissionUpdate(this);
         }
 
         public int GetProgress()
         {
             return _progress;
+        }
+
+        public void ResetProgress()
+        {
+            _progress = 0;
+            Complete = false;
+            _unlocked = false;
         }
     }
 }

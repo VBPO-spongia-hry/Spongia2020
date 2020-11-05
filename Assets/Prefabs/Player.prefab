@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Color: {r: 0.9716981, g: 0.968895, b: 0.6691883, a: 1}
   m_Intensity: 0.5
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 4d432b00000000006b42237c
+  m_ApplyToSortingLayers: 4d432b00000000006b42237c1fbdb54b
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   infectionHealthDropAmount: 5
   infectionDropRate: 2
   inventory: {fileID: 4313322338440710206}
+  defaultWeapon: {fileID: 0}
 --- !u!114 &4313322338440710206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,9 +246,10 @@ MonoBehaviour:
   tooltip: {fileID: 0}
   capacitySlider: {fileID: 0}
   capacityText: {fileID: 0}
+  powerUpIcon: {fileID: 0}
   armorSlot: {fileID: 0}
   protectionSlot: {fileID: 0}
-  weapon: {fileID: 0}
+  weaponSlot: {fileID: 0}
   backpackSlot: {fileID: 0}
   itemUIPrefab: {fileID: 5082962998661605534, guid: d73272ee1bc785bcb8ee9b244b78fc24,
     type: 3}

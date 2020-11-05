@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Security.AccessControl;
 using Dialogues;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 namespace Environment
 {
@@ -18,12 +20,12 @@ namespace Environment
         public float interiorLightIntensity;
         public float dayCycleSpeed;
         public AnimationCurve dayCycleFunction;
-        private bool _isInInterior;
+        [NonSerialized] public bool IsInInterior;
         private float _timer;
-        [NonSerialized] public bool HasPower;
+        private bool _hasPower;
         public Light2D ActiveGlobalLight
         {
-            get => _isInInterior ? globalInteriorLight : globalExteriorLight;
+            get => IsInInterior ? globalInteriorLight : globalExteriorLight;
         }
 
         private void Start()
@@ -50,13 +52,14 @@ namespace Environment
         private void Update()
         {
             _timer += Time.deltaTime;
-            if (!_isInInterior)
+            if (Input.GetKeyDown(KeyCode.T)) StartCoroutine(PowerOutage());
+            if (!IsInInterior)
             {
                 globalExteriorLight.intensity = dayCycleFunction.Evaluate(_timer * dayCycleSpeed);
             }
             else
             {
-                globalInteriorLight.intensity = interiorLightIntensity;
+                if(_hasPower) globalInteriorLight.intensity = interiorLightIntensity;
             }
         }
 
@@ -64,7 +67,7 @@ namespace Environment
         {
             globalExteriorLight.gameObject.SetActive(false);
             globalInteriorLight.gameObject.SetActive(true);
-            _isInInterior = true;
+            IsInInterior = true;
             Debug.Log(globalInteriorLight.intensity);
         }
 
@@ -72,8 +75,22 @@ namespace Environment
         {
             globalExteriorLight.gameObject.SetActive(true);
             globalInteriorLight.gameObject.SetActive(false);
-            _isInInterior = false;
+            IsInInterior = false;
             Debug.Log("Exited Interior");
+        }
+
+        private IEnumerator PowerOutage()
+        {
+            _hasPower = false;
+            for (int i = 0; i < 5; i++)
+            {
+                globalInteriorLight.intensity = Random.value;
+                for (int j = 0; j < Random.Range(1,10); j++)
+                {
+                    yield return new WaitForEndOfFrame();   
+                }
+            }
+            globalInteriorLight.intensity = .01f;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Environment;
+using Missions;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -20,9 +21,13 @@ public class UIController : MonoBehaviour
     public Button interactionButton;
     public static UIController Instance;
     public GameObject deathUI;
+    public GameObject victoryUI;
     public AudioClip loseClip;
     public AudioClip loseMusic;
+    public AudioClip winClip;
+    public AudioClip winMusic;
     public AudioMixer mixer;
+    
 
     private void OnEnable()
     {
@@ -77,13 +82,28 @@ public class UIController : MonoBehaviour
 
     public void Death()
     {
+        foreach (var mission in MissionManager.Instance.missions)
+        {
+            mission.ResetProgress();
+        }
         deathUI.SetActive(true);
-        var audio = GetComponent<AudioSource>();
-        audio.clip = loseClip;
-        audio.Play();
+        var source = GetComponent<AudioSource>();
+        source.clip = loseClip;
+        source.Play();
         var music = Map.Instance.GetComponent<AudioSource>();
         mixer.SetFloat("FightSound", -80);
         music.clip = loseMusic;
+        music.Play();
+    }
+    public void Victory()
+    {
+        victoryUI.SetActive(true);
+        var source = GetComponent<AudioSource>();
+        source.clip = winClip;
+        source.Play();
+        var music = Map.Instance.GetComponent<AudioSource>();
+        mixer.SetFloat("FightSound", -80);
+        music.clip = winMusic;
         music.Play();
     }
 

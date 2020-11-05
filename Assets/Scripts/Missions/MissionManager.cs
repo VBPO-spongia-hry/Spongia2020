@@ -18,7 +18,6 @@ namespace Missions
         public GameObject missionPrefab;
         public Transform missionWindow;
         public Slider taskBar;
-
         private bool _uIshowing;
         private List<GameObject> _unlocked;
         private Queue<Mission> _waitingForUiShow;
@@ -78,6 +77,8 @@ namespace Missions
                 var m = _unlocked.Find(e => e.GetComponent<MissionUI>().mission == mission);
                 _unlocked.Remove(m);
                 Destroy(m);
+                if(_gameProgress == missions.Length) 
+                    UIController.Instance.Victory();
                 UpdateUnlocked();
             }
             else

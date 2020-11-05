@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterTag: Player
-  triggerOnce: 0
+  triggerOnce: 1
   onEnter:
     m_PersistentCalls:
       m_Calls:
@@ -19243,7 +19243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enterTag: Player
-  triggerOnce: 0
+  triggerOnce: 1
   onEnter:
     m_PersistentCalls:
       m_Calls:
