@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Environment;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -65,7 +66,11 @@ public class PlayerMovement : MonoBehaviour
             };
         }
 
-        flashlight.GetComponent<Light2D>().m_ApplyToSortingLayers = layers;
+        var light2D = flashlight.GetComponent<Light2D>();
+        FieldInfo fieldInfo = light2D.GetType().GetField("m_ApplyToSortingLayers", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        if (fieldInfo != null) fieldInfo.SetValue(light2D, layers);
+//        flashlight.GetComponent<Light2D>().m_ApplyToSortingLayers = layers;
     }
 
     private void LateUpdate()
