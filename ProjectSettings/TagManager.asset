@@ -43,6 +43,9 @@ TagManager:
   - name: Environment
     uniqueID: 2835277
     locked: 0
+  - name: Interior
+    uniqueID: 1270201631
+    locked: 0
   - name: Items
     uniqueID: 2082685547
     locked: 0

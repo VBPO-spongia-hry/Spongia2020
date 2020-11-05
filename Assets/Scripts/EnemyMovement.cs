@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.AccessControl;
 using System.Timers;
+using Environment;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -57,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        flashlight.GetChild(0).gameObject.SetActive(Map.Instance.current.ActiveGlobalLight.intensity < .3f);
         if (InputHandler.DisableInput) return;
         if (state == EnemyState.Follow)
         {

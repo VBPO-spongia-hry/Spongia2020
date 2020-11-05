@@ -1,4 +1,5 @@
 using System;
+using Environment;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        flashlight.gameObject.SetActive(Map.Instance.current.ActiveGlobalLight.intensity < .3f);
         if(InputHandler.DisableInput) return;
         _rb.velocity = Vector2.zero;
         _rb.MovePosition(_rb.position + Velocity);
