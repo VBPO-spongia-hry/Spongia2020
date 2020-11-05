@@ -1,7 +1,9 @@
 using System;
+using Environment;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
@@ -18,6 +20,9 @@ public class UIController : MonoBehaviour
     public Button interactionButton;
     public static UIController Instance;
     public GameObject deathUI;
+    public AudioClip loseClip;
+    public AudioClip loseMusic;
+    public AudioMixer mixer;
 
     private void OnEnable()
     {
@@ -27,6 +32,7 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
+        mixer.SetFloat("FightSound", 0);
         _menuTabs = menuUI.GetComponent<TabUI>();
         deathUI.SetActive(false);
         hungerSlider.maxValue = vitals.hunger;
@@ -72,6 +78,13 @@ public class UIController : MonoBehaviour
     public void Death()
     {
         deathUI.SetActive(true);
+        var audio = GetComponent<AudioSource>();
+        audio.clip = loseClip;
+        audio.Play();
+        var music = Map.Instance.GetComponent<AudioSource>();
+        mixer.SetFloat("FightSound", -80);
+        music.clip = loseMusic;
+        music.Play();
     }
 
     public void BackToMenu()

@@ -46,6 +46,7 @@ namespace Environment
             complete = Complete;
             if (Complete)
             {
+                GetComponent<AudioSource>().Stop();
                 if(mission != null)
                 {
                     mission.UpdateProgress();
@@ -55,6 +56,7 @@ namespace Environment
 
         public void StartSpawning()
         {
+            GetComponent<AudioSource>().Play();
             StartCoroutine(Spawn());
         }
 
