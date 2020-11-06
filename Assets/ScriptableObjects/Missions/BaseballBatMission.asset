@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BaseballBatMission
   m_EditorClassIdentifier: 
   type: 0
-  missionName: 
-  description: 
-  itemName: 
+  missionName: 1. Mission
+  description: 'Acquire Baseball Bat '
+  itemName: Baseball Bat
   needToUnlock: []
   failTime: 0
-  locationName: 
-  completion: 0
+  locationName: Tutorial
+  completion: 1
