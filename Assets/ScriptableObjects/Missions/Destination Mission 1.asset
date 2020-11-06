@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Destination Mission 1
   m_EditorClassIdentifier: 
   type: 1
-  missionName: Example Destination Mission
-  description: Get to red square in cemetery and laboratory hub
+  missionName: Go to your Base
+  description: Travel to the Laboratory hub
   itemName: 
-  unlocked: 1
-  needToUnlock: []
+  needToUnlock:
+  - {fileID: 11400000, guid: 215687001e9c52708931bbb9b3d50e31, type: 2}
   failTime: 0
-  locationName: Laboratory Hub;Cemetery
+  locationName: Laboratory Hub
   completion: 2

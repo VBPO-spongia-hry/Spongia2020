@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
+  m_Name: Tutorial4
+  m_EditorClassIdentifier: 
+  messages:
+  - msg: Congratulations! You've found your first weapon.
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: You will need it if someone resists you in saving the world.
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: You can insert it into the hand using the left mouse button when you are
+      in the inventory window.
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: You can use the right mouse button to throw it out of the inventory.
+    emotionIndex: 0
+    character: {fileID: 0}

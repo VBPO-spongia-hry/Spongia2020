@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
+  m_Name: Tutorial2
+  m_EditorClassIdentifier: 
+  messages:
+  - msg: Look, here's the food!
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: Take it with the E key.
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: 'In the lower left corner you can see a hungerbar, be careful not to die
+      of hunger. It would not be a heroic death. '
+    emotionIndex: 0
+    character: {fileID: 0}

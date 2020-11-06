@@ -99,6 +99,7 @@ namespace Items
                 var newItem = Instantiate(itemUIPrefab, itemsParent.transform).GetComponent<InventoryItem>();
                 newItem.Item = item;
                 newItem.Count = 1;
+                newItem.AddInventoryEventListeners();
                 _items.Add(newItem);
             }
             Usage += item.spaceRequired;
@@ -214,6 +215,17 @@ namespace Items
                 GetComponent<PlayerMovement>().playerSpeed /= item.powerUpMultiplier;
             powerUpIcon.SetActive(false);
             CanUsePowerUp = true;
+        }
+
+        public IEnumerable<InventoryItem> RenderInventory()
+        {
+            foreach (var item in _items)
+            {
+                var itemRenderer = Instantiate(itemUIPrefab).GetComponent<InventoryItem>();
+                itemRenderer.Item = item.Item;
+                itemRenderer.Count = item.Count;
+                yield return itemRenderer;
+            }
         }
     }
 }

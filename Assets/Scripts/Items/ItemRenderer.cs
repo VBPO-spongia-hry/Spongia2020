@@ -8,9 +8,10 @@ namespace Items
         public bool IsInteractable { get; set; }
         public Item item;
 
-        private void OnEnable()
+        private void Start()
         {
             IsInteractable = false;
+            GetComponent<SpriteRenderer>().sprite = item.icon;
         }
 
         public void SetInteracting()
