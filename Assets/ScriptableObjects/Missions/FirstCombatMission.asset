@@ -16,8 +16,12 @@ MonoBehaviour:
   missionName: First enemies on sight
   description: Defeat your first enemies
   itemName: 
+<<<<<<< HEAD
   needToUnlock:
   - {fileID: 11400000, guid: ef09b07cebcee5292ad841b249ef24ad, type: 2}
+=======
+  needToUnlock: []
+>>>>>>> 384e9c326b01db67272eba96de5796efe0bdc193
   failTime: 0
   locationName: Tutorial
   completion: 2
