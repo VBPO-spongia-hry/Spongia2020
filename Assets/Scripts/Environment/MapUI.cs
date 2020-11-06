@@ -19,6 +19,11 @@ namespace Environment
         public GameObject exclamationMark;
         private Coroutine _tooltipShow;
         private static List<MapUI> _instances;
+
+        public static void ClearInstances()
+        {
+            _instances.Clear();
+        }
         
         public static void UpdateTasks()
         {

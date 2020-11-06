@@ -7,10 +7,13 @@ using UnityEngine.EventSystems;
 
 namespace Items
 {
+    public delegate void ItemMouseHandler();
     public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private Item _item;
         public Button useButton;
+        public event ItemMouseHandler OnRightClick;
+        public event ItemMouseHandler OnLeftClick;
         public Item Item
         {
             get => _item;
@@ -35,12 +38,12 @@ namespace Items
 
         private void Start()
         {
-            if(!isLoadoutSlot) useButton.gameObject.SetActive(Item.type == ItemType.PowerUp);
+            if (!isLoadoutSlot && useButton != null) useButton.gameObject.SetActive(Item.type == ItemType.PowerUp);
         }
 
         private void Update()
         {
-            if(!isLoadoutSlot) useButton.interactable = Inventory.Instance.CanUsePowerUp;
+            if(!isLoadoutSlot && useButton != null) useButton.interactable = Inventory.Instance.CanUsePowerUp;
         }
 
         public void UsePowerUp()
@@ -60,8 +63,19 @@ namespace Items
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if(_tooltipRoutine != null) StopCoroutine(_tooltipRoutine);
+            HideTooltip();
+        }
+
+        public void HideTooltip()
+        {
+            if (_tooltipRoutine != null) StopCoroutine(_tooltipRoutine);
             Inventory.Instance.HideTooltip();
+        }
+
+        public void AddInventoryEventListeners()
+        {
+            OnLeftClick += Equip;
+            OnRightClick += RemoveItem;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -71,11 +85,10 @@ namespace Items
                 switch (eventData.button)
                 {
                     case PointerEventData.InputButton.Left:
-                        Equip();
+                        OnLeftClick?.Invoke();
                         break;
                     case PointerEventData.InputButton.Right:
-                        Inventory.Instance.ThrowItem(Inventory.Instance.FindItem(_item.itemName));
-                        Inventory.Instance.RemoveItem(_item.itemName);
+                        OnRightClick?.Invoke();
                         break;
                     case PointerEventData.InputButton.Middle:
                         break;
@@ -92,6 +105,12 @@ namespace Items
                 }
             }
             
+        }
+
+        private void RemoveItem()
+        {
+            Inventory.Instance.ThrowItem(Inventory.Instance.FindItem(_item.itemName));
+            Inventory.Instance.RemoveOne(_item.itemName);
         }
 
         private void Equip()
@@ -129,6 +148,12 @@ namespace Items
         {
             yield return new WaitForSeconds(1);
             Inventory.Instance.ShowTooltip(Item);
+        }
+
+        private void OnDestroy()
+        {
+            if(_tooltipRoutine != null) StopCoroutine(_tooltipRoutine);
+            Inventory.Instance.HideTooltip();
         }
     }
 }

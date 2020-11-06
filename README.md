@@ -30,7 +30,7 @@ git clone git@github.com:{tvoje meno v GitHube}/Spongia2020.git
 # Konstanty
 Tu najdes zoznam vsetkych konstant, ktore mozes menit
 ## Item
-Na vytvorenie itemu chod do precinku `ScriptableObjects/items` a skopiruj nejaky item, alebo vytvor novy pomocou praveho tlacitka
+Na vytvorenie itemu chod do precinku `ScriptableObjects/items` a skopiruj nejaky item, alebo vytvor novy pomocou praveho tlacitka.
 * `itemName` - meno itemu
 * `description` - strucny popis, co ten item robi (zobrazi sa ked nad nim budes dlho mat mys v inventari)
 * `spaceRequired` - kolko miesta zaberie tento item v inventari
@@ -83,14 +83,14 @@ Tento skript sluzi na ovladanie toho ako sa meni healthbar, hungerbar, infection
 * `infectionDropRate` - ako casto sa ma updatovat infectionbar
 * `infectionHealthDropAmount` - kolko zivota nam bude kazdy update infectionbaru ubudat ak sme infikovany
 * `infectionRegenerationAmount` - ako rychlo sa nam regeneruje infectionbar ak nie sme v kontaminovanej oblasti
-### Environment
+## Environment
 nejake veci suvisiace s hernym prostredim (zatial tu toho vela nie je, casom to tu bude pribudat)
-## ContaminedLocation
+### ContaminedLocation
 Tymto vies zadefinovat kontaminovanu lokaciu (kde bude klesat infectionbar). Lokaciu zadefinujes tak, ze pridas hocijaky 2d collider a zakliknes `isTrigger`
 * `infectionStrength` - sila infikovania (o kolko klesne infectionbar ak je hrac vo vnutri)
-## MapLocation
+### MapLocation
 * `TravelTime` - kolko sekund ma trvat cestovanie do tejto lokacie
-## TriggerEvents
+### TriggerEvents
 Sluzi na spustanie roznych veci ked hrac vojde alebo vyjde z triggeru tohto objektu. Moze sa pouzit na zapnutie dialogov, zacatie spawnovania, rozne vypinanie a zapinanie objektov, ...
 * `TriggerOnce` - ma sa spustit iba raz, alebo kazdy krat ked hrac vojde/vyjde z oblasti
 * `OnEnter/OnExit` - sem vies dragnut jednotlive objekty ktore maju nie co spravit pri vojdeni/vyjdeni
@@ -100,18 +100,18 @@ Sluzi na spustanie roznych veci ked hrac vojde alebo vyjde z triggeru tohto obje
  * Ked chcem spustit dialog -> dragnem tam hlavny objekt lokacie -> selectnem `Maplocation>BeginDialogue` a zvolim ktory dialog chcem zacat
  * Ked chcem vypnut/zapnut hocijaky objekt -> dragnem ten objket a selectnem `GameObject>SetActive` a zvolim, ci vypnut alebo zapnut
  * mozem tam dragnut aj nejake AudioSource a selectnut play a ono to potom zacne hrat zvuk, ktory zadas tomu audiosource
-## EnemySpawner
+### EnemySpawner
 Spawnovanie enemakov nastava vo wavekach - v kazdej wave nastavim kolko enemakov ma spawnut, dragnem tam objekt enemaka, ktoreho tam chcem spawnut, nastavim interval, ze ako casto sa maju spawnovat, cas ktory cakam po skonceni wave
 * `Mission` - misia, ktoru updatneme ked su vsetci enemaci z tohto spawnera mrtvi
 
-### Dialogy
+## Dialogy
 V kazdom dialogu mozu byt najviac 2 postavy, ak ich tam bude viac, tak sa dialog nespusti. Dialog sa da vytvorit pomocou `Create>Dialogues>Dialogue`.
-## DialogueCharacter
+### DialogueCharacter
 Reprezentuje jednu hernu postavu, co vystupuje v dialogoch
 * `BaseImage` - telo postavy - musi byt bez hlavy
 * `CharacterName`, `Job` - opsiuje ako sa vola a co robi
 * `Emotions` - pole hlav danej postavy, ktore reprezentuju jednotlive emocie
-## Dialogue
+### Dialogue
 V tomto objekte sa nachadza samotny dialog. Pre kazdu spravu treba dodat nasledovne
 * `Msg` - Sprava, co sa hovori
 * `EmotionIndex` - kolkatu emociu ma mat postava, ktora to hovori (cisluje sa od 0)

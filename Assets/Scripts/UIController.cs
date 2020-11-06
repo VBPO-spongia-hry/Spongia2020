@@ -86,6 +86,7 @@ public class UIController : MonoBehaviour
         {
             mission.ResetProgress();
         }
+        MapUI.ClearInstances();
         deathUI.SetActive(true);
         var source = GetComponent<AudioSource>();
         source.clip = loseClip;
