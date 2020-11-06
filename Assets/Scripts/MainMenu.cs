@@ -20,7 +20,6 @@ public class MainMenu : MonoBehaviour
     public Slider MusicSlider;
     public Slider SFXSlider;
     public Text MessageText;
-    public InputField inputField;
     public Toggle fullscreen;
 
     private string _message;
@@ -152,10 +151,6 @@ public class MainMenu : MonoBehaviour
         saveData.resX = resolution.x;
         saveData.resY = resolution.y;
         saveData.fullscreen = fullscreen.isOn;
-        if(inputField.text != string.Empty)
-        {
-            saveData.name = inputField.text;
-        }
         return saveData;
     }
 
@@ -166,6 +161,5 @@ public class MainMenu : MonoBehaviour
         ChangeVolume();
         Screen.SetResolution(data.resX, data.resY, data.fullscreen);
         dropdown.value = dropdown.options.IndexOf(new Dropdown.OptionData(data.resX + "×" + data.resY));
-        inputField.text = data.name;
     }
 }

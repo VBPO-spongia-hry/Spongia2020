@@ -76,16 +76,15 @@ namespace Environment
             globalExteriorLight.gameObject.SetActive(true);
             globalInteriorLight.gameObject.SetActive(false);
             IsInInterior = false;
-            Debug.Log("Exited Interior");
         }
 
         private IEnumerator PowerOutage()
         {
             _hasPower = false;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 globalInteriorLight.intensity = Random.value;
-                for (int j = 0; j < Random.Range(1,10); j++)
+                for (int j = 0; j < Random.Range(1,20); j++)
                 {
                     yield return new WaitForEndOfFrame();   
                 }
