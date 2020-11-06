@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
   m_Name: Tutorial3
   m_EditorClassIdentifier: 
-  messages: []
+  messages:
+  - msg: There is a notebook icon at the bottom right corner. When you click on it,
+      you will see a list of tasks you can perform.
+    emotionIndex: 0
+    character: {fileID: 0}

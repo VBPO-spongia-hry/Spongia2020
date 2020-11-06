@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
   m_Name: Tutorial5
   m_EditorClassIdentifier: 
-  messages: []
+  messages:
+  - msg: Warning! Here are the first people who want to stop you from heroism.
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: You can use your weapon by pressing the SPACE key or the left mouse button.
+      Your weapon is pointing in the direction of your cursor.
+    emotionIndex: 0
+    character: {fileID: 0}

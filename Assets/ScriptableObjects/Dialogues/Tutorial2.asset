@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
   m_Name: Tutorial2
   m_EditorClassIdentifier: 
-  messages: []
+  messages:
+  - msg: Look, here's the food!
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: Take it with the E key.
+    emotionIndex: 0
+    character: {fileID: 0}
+  - msg: 'In the lower left corner you can see a hungerbar, be careful not to die
+      of hunger. It would not be a heroic death. '
+    emotionIndex: 0
+    character: {fileID: 0}
