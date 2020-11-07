@@ -15,7 +15,7 @@ MonoBehaviour:
   messages:
   - msg: You made it! Now you can start a real adventure.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: You can move around the world using the map icon in the lower right corner.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}

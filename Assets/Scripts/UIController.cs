@@ -27,7 +27,12 @@ public class UIController : MonoBehaviour
     public AudioClip winClip;
     public AudioClip winMusic;
     public AudioMixer mixer;
-    
+
+
+    private void Awake()
+    {
+        MapUI.ClearInstances();
+    }
 
     private void OnEnable()
     {

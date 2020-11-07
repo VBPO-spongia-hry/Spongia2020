@@ -15,8 +15,8 @@ MonoBehaviour:
   messages:
   - msg: Your first task is to learn to walk.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: You move with the arrow keys or with WASD, the W key goes up, S down, A
       left and D right.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}

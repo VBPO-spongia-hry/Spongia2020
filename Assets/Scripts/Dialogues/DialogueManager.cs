@@ -88,7 +88,7 @@ namespace Dialogues
             dialogueAnimator.SetTrigger(DialogueStart);
             dialogueAnimator.SetBool(Viewing,true);
             character1.transform.GetChild(1).GetComponent<Image>().sprite = _character1.emotions[0];
-            character2.transform.GetChild(1).GetComponent<Image>().sprite = _character2.emotions[0];
+            if(_character2 != null) character2.transform.GetChild(1).GetComponent<Image>().sprite = _character2.emotions[0];
             dialogue.Reset();
             yield return new WaitForSeconds(1f);
             for (int i = 0; i < dialogue.messages.Length; i++)
@@ -123,7 +123,7 @@ namespace Dialogues
             {
                 displayed += t;
                 updating.text = displayed;
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.02f);
                 if (!Input.anyKeyDown) continue;
                 updating.text = msg.msg;
                 break;

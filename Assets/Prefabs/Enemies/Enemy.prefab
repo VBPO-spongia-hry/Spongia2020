@@ -560,10 +560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71276379c31f739e7b9176ae5b28adcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 0
+  mode: 1
   speed: 5
   followSpeed: 4
-  attackRange: 2
+  attackRange: 0.75
   observeTime: 0.5
   waypoints:
   - {fileID: 0}
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   healthSlider: {fileID: 1585116945005653325}
-  weapon: {fileID: 11400000, guid: 78efdd2218ab9c7af9359e21b73a5803, type: 2}
+  weapon: {fileID: 11400000, guid: 1b5663b2faaa0d178871c25fa839c06d, type: 2}
   itemsDropped: []
 --- !u!1 &8071433885935735888
 GameObject:

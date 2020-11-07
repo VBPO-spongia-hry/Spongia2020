@@ -27,6 +27,7 @@ namespace Environment
         
         public static void UpdateTasks()
         {
+            Debug.Log(_instances);
             foreach (var mapUi in _instances)
             {
                 var isNeeded = MissionManager.Instance.active.Any(e =>
@@ -35,7 +36,7 @@ namespace Environment
             }
         }
 
-        private void OnEnable()
+        public MapUI()
         {
             if(_instances == null) _instances = new List<MapUI>();
             _instances.Add(this);

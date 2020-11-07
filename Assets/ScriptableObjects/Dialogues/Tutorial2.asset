@@ -15,11 +15,11 @@ MonoBehaviour:
   messages:
   - msg: Look, here's the food!
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: Take it with the E key.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: 'In the lower left corner you can see a hungerbar, be careful not to die
       of hunger. It would not be a heroic death. '
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}

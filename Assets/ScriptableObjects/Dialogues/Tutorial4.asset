@@ -15,14 +15,14 @@ MonoBehaviour:
   messages:
   - msg: Congratulations! You've found your first weapon.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: You will need it if someone resists you in saving the world.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: You can insert it into the hand using the left mouse button when you are
       in the inventory window.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
   - msg: You can use the right mouse button to throw it out of the inventory.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}

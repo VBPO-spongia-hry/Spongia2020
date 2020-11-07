@@ -16,4 +16,4 @@ MonoBehaviour:
   - msg: There is a notebook icon at the bottom right corner. When you click on it,
       you will see a list of tasks you can perform.
     emotionIndex: 0
-    character: {fileID: 0}
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
