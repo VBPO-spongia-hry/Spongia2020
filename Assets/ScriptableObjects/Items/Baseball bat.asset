@@ -21,7 +21,7 @@ MonoBehaviour:
   damage: 30
   fireRate: 1
   mode: 0
-  range: 3
+  range: 1.5
   projectile: {fileID: 5447486879045156449, guid: 9881479b7f1786136a1df3520716c151,
     type: 3}
   toughness: 0.1

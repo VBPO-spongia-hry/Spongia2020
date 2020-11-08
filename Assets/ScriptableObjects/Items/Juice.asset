@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Juice
   useClip: {fileID: 8300000, guid: edfa8c70ee3affba199f8f2ad2047268, type: 3}
   description: +7 hunger
-  icon: {fileID: 21300000, guid: b2c899f3d1751e54f9c2c8ab350f4f98, type: 3}
+  icon: {fileID: 21300000, guid: 58c9f895f44f6b54983975998b7609ff, type: 3}
   spaceRequired: 6
   type: 4
   damage: 0

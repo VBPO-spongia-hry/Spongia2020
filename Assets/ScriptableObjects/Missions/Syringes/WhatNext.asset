@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61bfaa0caf0e49e7baa449bd3e52746b, type: 3}
-  m_Name: BadDNA
+  m_Name: WhatNext
   m_EditorClassIdentifier: 
   type: 1
-  missionName: Deliver the DNA
-  description: Give your acquired DNA to the researchers in the hub.
+  missionName: Ask what to do next
+  description: Go to Jim and ask him what he needs now.
   itemName: 
   autoUnlock: 1
   needToUnlock:
-  - {fileID: 11400000, guid: f1e6d37e6c3f91b8b97f3fa06b0b569d, type: 2}
+  - {fileID: 11400000, guid: d1c7e873be7efa01f9b9d35fd348c245, type: 2}
   locationName: Laboratory Hub
   completion: 1
-  dialogueOnComplete: {fileID: 11400000, guid: bbb6f7bdf3590b91f816d0d71955fd67, type: 2}
+  dialogueOnComplete: {fileID: 11400000, guid: 66f1d3ad6616a4005b1e73d52635c83f, type: 2}

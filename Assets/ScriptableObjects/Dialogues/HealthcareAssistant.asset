@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae71d9923bda4a75ba461416556c0fa8, type: 3}
+  m_Name: HealthcareAssistant
+  m_EditorClassIdentifier: 
+  baseImage: {fileID: 1128064057678628105, guid: faffbfb6133bbfc4991d897d0852d2ef,
+    type: 3}
+  characterName: Jim
+  job: Healthcare Assistant
+  emotions:
+  - {fileID: 1525226809786960119, guid: abcdc3fa38a5019f6aee485256fa76fe, type: 3}
+  - {fileID: -3279042571618518651, guid: abcdc3fa38a5019f6aee485256fa76fe, type: 3}
+  - {fileID: 1347370359490895689, guid: abcdc3fa38a5019f6aee485256fa76fe, type: 3}

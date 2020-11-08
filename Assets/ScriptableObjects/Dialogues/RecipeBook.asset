@@ -16,6 +16,17 @@ MonoBehaviour:
   - msg: This is Recipe book. Here you can find all items that you can craft.
     emotionIndex: 0
     character: {fileID: 11400000, guid: e0fc9b37450ff6d4493ae528a1dc797a, type: 2}
-  - msg: This is Recipe book. Here you can find all items that you can craft.
+  - msg: Crafting is really easy just go next to the crafting bench and press E key.
+      Then you can click on items you want to put into your crafting.
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: e0fc9b37450ff6d4493ae528a1dc797a, type: 2}
+  - msg: 'If you place items correctly you will see an item in result slot. Click
+      on it to take it. Recipes:'
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: e0fc9b37450ff6d4493ae528a1dc797a, type: 2}
+  - msg: 2x Metal plate + 3x Screw -> Gun
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: e0fc9b37450ff6d4493ae528a1dc797a, type: 2}
+  - msg: Milk + Energy Drink + Juice + Carrot -> Med Kit
     emotionIndex: 0
     character: {fileID: 11400000, guid: e0fc9b37450ff6d4493ae528a1dc797a, type: 2}

@@ -628,6 +628,12 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[1858].second.m_AllTileFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1397886888734800465, guid: e20294bb05b70580cbb2e34bd33c24c5,
+        type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: d87ae3344f85fe38ea281e104800bfd0,
+        type: 2}
     - target: {fileID: 1851708092086273183, guid: e20294bb05b70580cbb2e34bd33c24c5,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -1284,6 +1290,8 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: bb5f147b0924fbb899cc31b430d127a8, type: 3}
   - {fileID: 8300000, guid: 88582be8051179abe8797e2c853f8816, type: 3}
+  - {fileID: 8300000, guid: bb5f147b0924fbb899cc31b430d127a8, type: 3}
+  - {fileID: 8300000, guid: 88582be8051179abe8797e2c853f8816, type: 3}
   current: {fileID: 0}
 --- !u!4 &1840798053
 Transform:
@@ -1323,6 +1331,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8ef31c7e3713d1c0b9e980871c2a7aa, type: 2}
   - {fileID: 11400000, guid: 9450394b2643184508888ebf255372f0, type: 2}
   - {fileID: 11400000, guid: 01b4bfe010f2da99d85255c5b44c04a4, type: 2}
+  - {fileID: 11400000, guid: d1c7e873be7efa01f9b9d35fd348c245, type: 2}
+  - {fileID: 11400000, guid: 56617eeefd59a38a08ca8b1f11a1ea02, type: 2}
+  - {fileID: 11400000, guid: 04385087d280e4f7cbcf7c3fac15eaa6, type: 2}
   unlockAnim: {fileID: 6523557314021600130}
   unlockHeader: {fileID: 6523557314021600129}
   unlockContent: {fileID: 6523557314021600128}
@@ -1344,10 +1355,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -7123444689321227752, guid: bf1ffb87d7d5358feaffe41f265b28cf,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bb5f147b0924fbb899cc31b430d127a8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2241,13 +2252,13 @@ PrefabInstance:
     - target: {fileID: 6523557314037653545, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: characterClips.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6523557314037653545, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: characterClips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: cbe1b1e4834ee7a71bfd438191de1f1a, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6523557314037653545, guid: fee8bdb1378a7008a88fdd20071ecb8d,
         type: 3}
       propertyPath: characterClips.Array.data[1]

@@ -7226,7 +7226,7 @@ Tilemap:
       m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 4, y: -6, z: 1}
     second:
       serializedVersion: 2
@@ -7280,7 +7280,7 @@ Tilemap:
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 9, y: -6, z: 1}
     second:
       serializedVersion: 2
@@ -12113,7 +12113,7 @@ Tilemap:
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 14, y: 2, z: 0}
     second:
       serializedVersion: 2
@@ -12689,7 +12689,7 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 13, y: 3, z: 1}
     second:
       serializedVersion: 2
@@ -12995,7 +12995,7 @@ Tilemap:
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 31, y: 3, z: 0}
     second:
       serializedVersion: 2
@@ -13913,7 +13913,7 @@ Tilemap:
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 4, y: 5, z: 1}
     second:
       serializedVersion: 2
@@ -13949,7 +13949,7 @@ Tilemap:
       m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 6, y: 5, z: 1}
     second:
       serializedVersion: 2
@@ -16289,7 +16289,7 @@ Tilemap:
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 6, y: 9, z: 1}
     second:
       serializedVersion: 2
@@ -16307,7 +16307,7 @@ Tilemap:
       m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 7, y: 9, z: 1}
     second:
       serializedVersion: 2
@@ -16892,7 +16892,7 @@ Tilemap:
       m_TileMatrixIndex: 2
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 7, y: 10, z: 1}
     second:
       serializedVersion: 2
@@ -16910,7 +16910,7 @@ Tilemap:
       m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 8, y: 10, z: 1}
     second:
       serializedVersion: 2
@@ -17216,7 +17216,7 @@ Tilemap:
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
+      m_AllTileFlags: 1
   - first: {x: 31, y: 10, z: 0}
     second:
       serializedVersion: 2
@@ -22623,7 +22623,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2835277
-  m_SortingLayer: -3
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -23394,7 +23394,7 @@ MonoBehaviour:
     endWait: 0
   waypoints: {fileID: 8730509514039271614}
   mission: {fileID: 11400000, guid: 215687001e9c52708931bbb9b3d50e31, type: 2}
-  complete: 0
+  destroyOnComplete: 1
   destroyed: 0
 --- !u!82 &1851708092086273183
 AudioSource:
@@ -24406,7 +24406,7 @@ MonoBehaviour:
     endWait: 0
   waypoints: {fileID: 8631615060609775991}
   mission: {fileID: 11400000, guid: 215687001e9c52708931bbb9b3d50e31, type: 2}
-  complete: 0
+  destroyOnComplete: 1
   destroyed: 0
 --- !u!82 &51628992781016942
 AudioSource:
@@ -25040,6 +25040,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644066804619737559}
     m_Modifications:
+    - target: {fileID: 7164726069673105263, guid: 966d307907b30d986bfd1841e9d641af,
+        type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: d87ae3344f85fe38ea281e104800bfd0,
+        type: 2}
     - target: {fileID: 8083217497434042356, guid: 966d307907b30d986bfd1841e9d641af,
         type: 3}
       propertyPath: m_Sprite

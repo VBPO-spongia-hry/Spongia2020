@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipes:
   - ingredients:
-    - item: Test Tube
-      count: 1
     - item: Milk
-      count: 2
+      count: 1
+    - item: Energy Drink
+      count: 1
+    - item: Carrot
+      count: 1
+    - item: Juice
+      count: 1
     result: {fileID: 11400000, guid: 89b29a7ac459b37e5bcd86bd8b2b87e3, type: 2}
   - ingredients:
     - item: Screw

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DNA Mission Start
   m_EditorClassIdentifier: 
   type: 1
-  missionName: DNA
+  missionName: Find Luigi
   description: Talk with Luigi about vaccine development
   itemName: 
   autoUnlock: 1

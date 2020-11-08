@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
+  m_Name: SyringeMission
+  m_EditorClassIdentifier: 
+  messages:
+  - msg: 'HI, Jim! I have brought a med kit for you. '
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: Well done! I wil take the things that i nedd out of it and the rest you
+      can use to restore your health
+    emotionIndex: -1
+    character: {fileID: 11400000, guid: 653c8dfcf640f96b38303dc261dd7c7c, type: 2}
+  - msg: Thanks, I am sure that I will use it. Bye ...
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: Wait! We don't have any syringes. How are we supposed to test the vaccine
+      now?
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: Ok so i will get you those syringes
+    emotionIndex: -1
+    character: {fileID: 11400000, guid: 653c8dfcf640f96b38303dc261dd7c7c, type: 2}
+  - msg: Thanks
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}

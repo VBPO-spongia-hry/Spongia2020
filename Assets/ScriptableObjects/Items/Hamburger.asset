@@ -17,7 +17,7 @@ MonoBehaviour:
   description: 'Best food
 
     +30 hunger'
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 75ce10d22ab3a43ae8b556a7c6241875, type: 3}
   spaceRequired: 20
   type: 4
   damage: 0

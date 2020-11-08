@@ -63,7 +63,6 @@ namespace Environment
         private void Update()
         {
             _timer += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.T)) StartCoroutine(PowerOutage());
             if (!IsInInterior)
             {
                 globalExteriorLight.intensity = dayCycleFunction.Evaluate(_timer * dayCycleSpeed);

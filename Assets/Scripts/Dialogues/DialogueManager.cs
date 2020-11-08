@@ -65,17 +65,30 @@ namespace Dialogues
                     return;
                 }
             }
-            nameText2.gameObject.SetActive(_character2 != null);
             if (_character2 != null)
             {
+                character2.gameObject.SetActive(true);
+                nameText2.gameObject.SetActive(true);
                 nameText2.SetText($"{_character2.characterName}, {_character2.job}");
                 character2.sprite = _character2.baseImage;
+            }
+            else
+            {
+                character2.gameObject.SetActive(false);
+                nameText2.gameObject.SetActive(false);
             }
 
             if (_character1 != null)
             {
+                character1.gameObject.SetActive(true);
+                nameText1.gameObject.SetActive(true);
                 character1.sprite = _character1.baseImage;
                 nameText1.SetText($"{_character1.characterName}, {_character1.job}");
+            }
+            else
+            {
+                character1.gameObject.SetActive(false);
+                nameText1.gameObject.SetActive(false);
             }
             
             StartCoroutine(Begin(dialogue));
