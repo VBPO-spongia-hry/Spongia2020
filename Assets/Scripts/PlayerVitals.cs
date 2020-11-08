@@ -21,8 +21,15 @@ public class PlayerVitals : MonoBehaviour, IDamageable
     private float _nextHungerUpdate;
     private float _nextInfectionUpdate;
     private float _nextAttack;
+    public AudioClip hitClip;
+    private AudioSource _audioSource;
+
     private Item Weapon => inventory.Weapon;
 
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -42,8 +49,8 @@ public class PlayerVitals : MonoBehaviour, IDamageable
             var fireRate = Weapon == null ? defaultWeapon.fireRate : Weapon.fireRate;
             _nextAttack = _timer + fireRate;
             var attackDestination =Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var movement = GetComponent<PlayerMovement>();
-            if(movement.Velocity.magnitude < .1f) movement.SetDirection((attackDestination - transform.position).normalized);
+            //var movement = GetComponent<PlayerMovement>();
+            //if(movement.Velocity.magnitude < .1f) movement.SetDirection((attackDestination - transform.position).normalized);
             Attack(attackDestination);
             
         }
@@ -90,6 +97,8 @@ public class PlayerVitals : MonoBehaviour, IDamageable
     {
         float damageMultiplier = Inventory.Instance.Armor == null ? 1 : 1 - Inventory.Instance.Armor.toughness;
         health -= damage * damageMultiplier;
+        _audioSource.clip = hitClip;
+        _audioSource.Play();
         if(health <= 0) Dead();
     }
 

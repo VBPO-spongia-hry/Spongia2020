@@ -1,20 +1,26 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Missions;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Environment
 {
     public class Map : MonoBehaviour
     {
         public MapLocation[] locations;
+        public MapUI[] mapUis;
         public Transform player;
         public Animation travelAnimation;
         public TextMeshProUGUI travelText;
         public static Map Instance;
         private bool _mapDisabled = false;
-
+        private bool _firstTravel = true;
+        public Mission[] powerMissions;
+        private AudioSource _audioSource;
+        public AudioClip[] musicClips;
         public static bool Disable
         {
             get => Instance._mapDisabled;
@@ -28,6 +34,9 @@ namespace Environment
             {
                 if(location != current) location.gameObject.SetActive(false);
             }
+
+            _audioSource = GetComponent<AudioSource>();
+            MapUI.Instances = mapUis.ToList();
         }
         private void Awake()
         {
@@ -35,7 +44,7 @@ namespace Environment
             if(Instance != null)
             {
                 Destroy(Instance.gameObject);
-                Debug.LogError("Multiple Map objects, destroying old one");
+                Debug.LogError("Multiple Map objects detected, destroying old one");
             }
             Instance = this;
         }
@@ -50,6 +59,8 @@ namespace Environment
             travelAnimation.Play("TravelShow");
             travelText.SetText($"Traveling to {locationName}");
             StartCoroutine(Travelling(loc));
+            if (_firstTravel) StartCoroutine(PowerOutageController());
+            _firstTravel = false;
         }
 
         private IEnumerator Travelling(MapLocation location)
@@ -70,6 +81,40 @@ namespace Environment
             yield return new WaitWhile(() => travelAnimation.isPlaying);
             
             InputHandler.DisableInput = false;
+        }
+
+        private IEnumerator PowerOutageController()
+        {
+            Debug.Log("outage triggered");
+            for (int i = 0; i < powerMissions.Length; i++)
+            {
+                yield return new WaitForSeconds(Random.Range(300,400));
+                TriggerPowerOutage(i);
+                yield return new WaitUntil(()=>powerMissions[i].Complete);
+                foreach (var location in locations)
+                {
+                    location.TurnOnPower();
+                }
+            }
+        }
+        
+        private void TriggerPowerOutage(int i)
+        {
+            foreach (var location in locations)
+            {
+                location.TurnOffPower();
+            }
+            powerMissions[i].Unlock();
+            PowerSwitch.Mission = powerMissions[i];
+        }
+
+        private void Update()
+        {
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.clip = musicClips[Random.Range(0, musicClips.Length)];
+                _audioSource.Play();
+            }
         }
     }
 }

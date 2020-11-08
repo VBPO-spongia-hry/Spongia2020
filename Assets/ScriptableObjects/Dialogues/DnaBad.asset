@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
+  m_Name: DnaBad
+  m_EditorClassIdentifier: 
+  messages:
+  - msg: Look! I've got for a DNA sample that you wanted.
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: Okay. I am analyzing it ...
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4d896c485f611f440b9bdcc4cdaf03a8, type: 2}
+  - msg: It looks like that the DNA wasn't from healthy person. Would you go back
+      to the cemetery to get another one?
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4d896c485f611f440b9bdcc4cdaf03a8, type: 2}
+  - msg: Do I really have to?
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: If you want to save the world, you have to.
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4d896c485f611f440b9bdcc4cdaf03a8, type: 2}

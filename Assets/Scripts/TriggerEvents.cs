@@ -1,5 +1,6 @@
 using System;
 using Dialogues;
+using Missions;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +22,23 @@ public class TriggerEvents : MonoBehaviour
         }
     }
 
+    public void UpdateMissionProgress(Mission mission)
+    {
+        if(mission.Complete) return;
+        if (!mission.Unlocked)
+        {
+            _enterTriggered = false;
+            _exitTriggered = false;
+            return;
+        }
+        mission.UpdateProgress();
+        if (mission.dialogueOnComplete != null)
+        {
+            DialogueManager.Singleton.BeginDialogue(mission.dialogueOnComplete);
+        }
+    }
+    
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_enterTriggered && triggerOnce) return;

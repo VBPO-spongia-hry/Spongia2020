@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Security.AccessControl;
 using Dialogues;
+using Items;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using Random = UnityEngine.Random;
@@ -28,6 +29,11 @@ namespace Environment
             get => IsInInterior ? globalInteriorLight : globalExteriorLight;
         }
 
+        public void TurnOnPower()
+        {
+            _hasPower = true;
+        }
+
         private void Start()
         {
             globalExteriorLight.gameObject.SetActive(true);
@@ -42,6 +48,11 @@ namespace Environment
         public void EnableMap()
         {
             Map.Disable = false;
+        }
+
+        public void AddItemToInventory(Item item)
+        {
+            Inventory.Instance.AddItem(item);
         }
 
         public void BeginDialogue(Dialogue dialogue)
@@ -80,7 +91,7 @@ namespace Environment
 
         private IEnumerator PowerOutage()
         {
-            _hasPower = false;
+            
             for (int i = 0; i < 10; i++)
             {
                 globalInteriorLight.intensity = Random.value;
@@ -90,6 +101,13 @@ namespace Environment
                 }
             }
             globalInteriorLight.intensity = .01f;
+        }
+
+        public void TurnOffPower()
+        {
+            _hasPower = false;
+            if(isActiveAndEnabled) StartCoroutine(PowerOutage());
+            else globalInteriorLight.intensity = .01f;
         }
     }
 }

@@ -19,12 +19,14 @@ namespace Items
         public TextMeshProUGUI capacityText;
         public GameObject powerUpIcon;
         [NonSerialized] public bool CanUsePowerUp = true;
+        private AudioSource _audioSource;
         
         private void Start()
         {
             Usage = 0;
             capacitySlider.maxValue = 100;
             powerUpIcon.SetActive(false);
+            _audioSource = GetComponent<AudioSource>();
         }
 
         public int Capacity => Backpack == null ? 100 : Backpack.backpackCapacity;
@@ -84,7 +86,13 @@ namespace Items
 
         public void AddItem(Item item)
         {
-            if(!CanAddItem(item)) return;
+            if(!CanAddItem(item))
+            {
+                ItemRenderer itemRenderer =
+                    Instantiate(itemPrefab, transform.position, Quaternion.identity).GetComponent<ItemRenderer>();
+                itemRenderer.item = item;     
+                return;
+            }
             if (ContainsItem(item.itemName))
             {
                 var slot = _items.FirstOrDefault(inventoryItem => inventoryItem.Item.itemName == item.itemName);
@@ -113,7 +121,7 @@ namespace Items
 
         public bool CanAddItem(Item item)
         {
-            if (item.type != ItemType.Other)
+            if (item.type != ItemType.Other && item.type != ItemType.PowerUp)
             {
                 return Capacity >= item.spaceRequired + Usage && !ContainsItem(item.name);
             }
@@ -190,6 +198,8 @@ namespace Items
             powerUpIcon.GetComponent<Image>().sprite = item.icon;
             powerUpIcon.SetActive(true);
             var vitals = GetComponent<PlayerVitals>();
+            _audioSource.clip = item.useClip;
+            _audioSource.Play();
             switch (item.powerUpType)
             {
                 case PowerUpType.Hunger:

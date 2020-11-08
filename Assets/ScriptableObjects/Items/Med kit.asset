@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Med kit
   m_EditorClassIdentifier: 
   itemName: Med Kit
-  description: Used to restore health
+  useClip: {fileID: 0}
+  description: 'Used to restore health
+
+    +50 health'
   icon: {fileID: 21300000, guid: d05091bd8700a45958b34e61a67fdea0, type: 3}
-  spaceRequired: 10
+  spaceRequired: 15
   type: 4
   damage: 5
   fireRate: 5

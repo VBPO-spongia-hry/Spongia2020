@@ -22,6 +22,8 @@ namespace Missions
         private List<GameObject> _unlocked;
         private Queue<Mission> _waitingForUiShow;
         private int _gameProgress;
+        public AudioSource audioSource;
+        public AudioClip completeClip;
 
         public static MissionManager Instance;
         private void OnEnable()
@@ -74,6 +76,8 @@ namespace Missions
             {
                 active.Remove(mission);
                 _gameProgress++;
+                audioSource.clip = completeClip;
+                audioSource.Play();
                 var m = _unlocked.Find(e => e.GetComponent<MissionUI>().mission == mission);
                 _unlocked.Remove(m);
                 Destroy(m);

@@ -91,7 +91,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1794431704112213585}
+<<<<<<< HEAD
+  - component: {fileID: 6570838734018656120}
+=======
   - component: {fileID: 519546647359432155}
+>>>>>>> 2074d9dd44cacfe14edb13522917d292e8fe3841
   m_Layer: 0
   m_Name: SkeletonBack
   m_TagString: Untagged
@@ -114,7 +118,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+--- !u!95 &6570838734018656120
+=======
 --- !u!95 &519546647359432155
+>>>>>>> 2074d9dd44cacfe14edb13522917d292e8fe3841
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -124,7 +132,11 @@ Animator:
   m_GameObject: {fileID: 1396753594431771851}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
+<<<<<<< HEAD
+  m_Controller: {fileID: 9100000, guid: 5ae47855424e4d549973528ade6e21cc, type: 2}
+=======
   m_Controller: {fileID: 9100000, guid: 1541a3a25a20957468aa36325b07e51b, type: 2}
+>>>>>>> 2074d9dd44cacfe14edb13522917d292e8fe3841
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

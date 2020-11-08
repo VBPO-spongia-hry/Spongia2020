@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Dialogues;
 using Environment;
 using Items;
 using UnityEngine;
@@ -20,13 +21,14 @@ namespace Missions
         public string missionName;
         public string description;
         public string itemName;
+        public bool autoUnlock = true;
         [NonSerialized]
         public bool Complete = false;
-        [NonSerialized] private bool _unlocked;
+        [NonSerialized] public bool Unlocked;
         public Mission[] needToUnlock;
-        public int failTime;
         public string locationName;
         public int completion;
+        public Dialogue dialogueOnComplete;
         [NonSerialized] private int _progress = 0;
 
         public void UpdateProgress()
@@ -61,10 +63,17 @@ namespace Missions
 
         public void CheckUnlocked()
         {
-            _unlocked = needToUnlock.All(e => e.Complete);
-            if(_unlocked) MissionManager.Instance.OnMissionUpdate(this);
+            if(!autoUnlock) return;
+            Unlocked = needToUnlock.All(e => e.Complete);
+            if(Unlocked) MissionManager.Instance.OnMissionUpdate(this);
         }
 
+        public void Unlock()
+        {
+            Unlocked = true;
+            MissionManager.Instance.OnMissionUpdate(this);
+        }
+        
         public int GetProgress()
         {
             return _progress;
@@ -74,7 +83,7 @@ namespace Missions
         {
             _progress = 0;
             Complete = false;
-            _unlocked = false;
+            Unlocked = false;
         }
     }
 }

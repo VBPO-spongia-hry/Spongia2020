@@ -15,5 +15,13 @@ MonoBehaviour:
   recipes:
   - ingredients:
     - item: Test Tube
+      count: 1
+    - item: Milk
       count: 2
     result: {fileID: 11400000, guid: 89b29a7ac459b37e5bcd86bd8b2b87e3, type: 2}
+  - ingredients:
+    - item: Screw
+      count: 3
+    - item: Metal Plate
+      count: 2
+    result: {fileID: 11400000, guid: 78efdd2218ab9c7af9359e21b73a5803, type: 2}
