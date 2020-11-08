@@ -55,6 +55,7 @@ public class EnemyMovement : MonoBehaviour
         _pathfinding = Pathfinding.GetPathfinding();
         if (_pathfinding == null) Debug.LogError("Couldn\'t find pathfinder");
         StartCoroutine(OnDestinationArrived(false));
+        _activeAnimator = frontSkeleton.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -85,11 +86,11 @@ public class EnemyMovement : MonoBehaviour
             }
             else if (_pathDestValid) Moveto(_pathDestination);
         }
-
-        var speed = (_prevPos - _rb.position) * 1/Time.deltaTime;
-        _activeAnimator.SetFloat("Speed", speed.magnitude);
-        SetDirection(speed.normalized);
-        _prevPos = _rb.position;
+        if(state == EnemyState.Attack || state == EnemyState.Observe)
+        {
+            _activeAnimator.SetFloat("Speed", 0);
+        }
+        
     }
 
     private void Moveto(Vector2 destination)
@@ -102,6 +103,9 @@ public class EnemyMovement : MonoBehaviour
         {
             flashlight.rotation = Quaternion.Slerp(flashlight.rotation, Quaternion.Euler(0,0, Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90), 10 * Time.deltaTime);
         }
+        _activeAnimator.SetFloat("Speed", velocity);
+        SetDirection(movement);
+        _prevPos = _rb.position;
     }
 
     private IEnumerator OnDestinationArrived(bool observe)
@@ -238,8 +242,9 @@ public class EnemyMovement : MonoBehaviour
                 dir = direction;
             }
         }
+        
         if(dir == _prevDir) return;
-        dir = _prevDir;
+        _prevDir = dir;
         frontSkeleton.SetActive(false);
         backSkeleton.SetActive(false);
         sideSkeleton.SetActive(false);

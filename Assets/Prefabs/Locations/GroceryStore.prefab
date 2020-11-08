@@ -156,6 +156,7 @@ Transform:
   - {fileID: 5981459086243480678}
   - {fileID: 5487477160047953993}
   - {fileID: 3699988388217412847}
+  - {fileID: 195354659350134581}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9887,6 +9888,64 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &2834738258811111273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195354659350134581}
+  - component: {fileID: 6458658325555774474}
+  m_Layer: 0
+  m_Name: ItemGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &195354659350134581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834738258811111273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 644066804619737559}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6458658325555774474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834738258811111273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f070e952f14429b768a660f51de018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToGenerate:
+  - {fileID: 11400000, guid: 7a437c1c600d47564b1099596bd8528b, type: 2}
+  - {fileID: 11400000, guid: dae02a6805028113090c0d93efdc2c3b, type: 2}
+  - {fileID: 11400000, guid: 11b12f23b763d2cd6ab72ec440c1f8d6, type: 2}
+  - {fileID: 11400000, guid: adbcaa1ef602e4bdab715fa425dee7a7, type: 2}
+  maxItemCount: 10
+  generationTime: 5
+  bounds:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 4.73
+    height: 2.16
+  itemPrefab: {fileID: 8779792420064780357, guid: 966d307907b30d986bfd1841e9d641af,
+    type: 3}
 --- !u!1 &3434755785258546372
 GameObject:
   m_ObjectHideFlags: 0
