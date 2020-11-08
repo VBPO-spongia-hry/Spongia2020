@@ -12,7 +12,7 @@ public class TabUI : MonoBehaviour
     public Color deselectedColor;
 
     // Start is called before the first frame update
-    void Start()
+     public void Init()
     {
         Switch(0);
        /* for (int i = 0; i < TabButtons.Length; i++)

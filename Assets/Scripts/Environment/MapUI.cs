@@ -18,30 +18,18 @@ namespace Environment
         public MapLocation location;
         public GameObject exclamationMark;
         private Coroutine _tooltipShow;
-        private static List<MapUI> _instances;
-
-        public static void ClearInstances()
-        {
-            _instances.Clear();
-        }
+        public static List<MapUI> Instances;
         
         public static void UpdateTasks()
         {
-            Debug.Log(_instances);
-            foreach (var mapUi in _instances)
+            foreach (var mapUi in Instances)
             {
                 var isNeeded = MissionManager.Instance.active.Any(e =>
                     e.locationName.Split(';').Any(name => name == mapUi.location.locationName));
                 mapUi.exclamationMark.SetActive(isNeeded);
             }
         }
-
-        public MapUI()
-        {
-            if(_instances == null) _instances = new List<MapUI>();
-            _instances.Add(this);
-        }
-
+        
         public void OnPointerEnter(PointerEventData eventData)
         {
             if(unlocked) hoverEffect.SetActive(true);

@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Dialogues
 {
@@ -18,6 +19,7 @@ namespace Dialogues
         public TextMeshProUGUI nameText2;
         public GameObject vitalsUI;
         public GameObject controlsUI;
+        public AudioClip[] characterClips;
         
         private DialogueCharacter _character1;
         private DialogueCharacter _character2;
@@ -28,18 +30,15 @@ namespace Dialogues
         private static readonly int Viewing = Animator.StringToHash("Viewing");
         private static readonly int DialogueStart = Animator.StringToHash("DialogueStart");
         private bool _showingDialogue;
+        private AudioSource _audioSource;
         
         private void OnEnable()
         {
             if(Singleton != null) Destroy(Singleton.gameObject);
             Singleton = this;
+            _audioSource = GetComponent<AudioSource>();
         }
-
-        private void Start()
-        {
-       //     BeginDialogue(dialogues.dialogues[0]);
-        }
-
+        
         private void Update()
         {
             if (_showingDialogue)
@@ -100,10 +99,13 @@ namespace Dialogues
             _showingDialogue = false;
             vitalsUI.SetActive(true);
             controlsUI.SetActive(true);
+            _audioSource.Stop();
         }
 
         private IEnumerator ShowMessage(Message msg)
         {
+            _audioSource.clip = characterClips[Random.Range(0, characterClips.Length)];
+            _audioSource.Play();
             Text updating = msg.character == _character1 ? bubble1 : bubble2;
             dialogueAnimator.SetBool(Isfirst, _character1 == msg.character);
             dialogueAnimator.SetTrigger(Next);

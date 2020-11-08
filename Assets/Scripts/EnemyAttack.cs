@@ -15,13 +15,16 @@ public class EnemyAttack : MonoBehaviour, IDamageable
     public Slider healthSlider;
     public Item weapon;
     public GameObject[] itemsDropped;
+    public AudioClip hitClip;
     private EnemyMovement _movement;
     private float _timer = 0;
     private float _nextAttack;
+    private AudioSource _audioSource;
     
     private void Start()
     {
         _movement = GetComponent<EnemyMovement>();
+        _audioSource = GetComponent<AudioSource>();
         healthSlider.maxValue = maxHealth;
         _health = maxHealth;
         healthSlider.value = _health;
@@ -75,6 +78,8 @@ public class EnemyAttack : MonoBehaviour, IDamageable
         _health -= damage;
         healthSlider.value = _health;
         if(_health <= 0) Dead();
+        _audioSource.clip = hitClip;
+        _audioSource.Play();
     }
 
     public void Dead()

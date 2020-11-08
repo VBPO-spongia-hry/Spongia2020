@@ -152,8 +152,11 @@ namespace Items
 
         private void OnDestroy()
         {
-            if(_tooltipRoutine != null) StopCoroutine(_tooltipRoutine);
-            Inventory.Instance.HideTooltip();
+            if(_tooltipRoutine != null)
+            {
+                StopCoroutine(_tooltipRoutine);
+                Inventory.Instance.HideTooltip();
+            }
         }
     }
 }

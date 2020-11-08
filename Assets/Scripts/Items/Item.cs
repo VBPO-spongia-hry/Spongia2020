@@ -27,6 +27,7 @@ namespace Items
     public class Item : ScriptableObject
     {
         public string itemName;
+        public AudioClip useClip;
         [TextArea(1,3)]
         public string description;
         public Sprite icon;

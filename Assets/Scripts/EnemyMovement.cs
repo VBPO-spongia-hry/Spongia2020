@@ -37,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
     private bool _pathDestValid;
     private Vector2 _prevPos;
     private bool _waitingForPath;
+    private Animator _activeAnimator;
     [SerializeField] private GameObject frontSkeleton;
     [SerializeField] private GameObject backSkeleton;
     [SerializeField] private GameObject sideSkeleton;
@@ -85,6 +86,9 @@ public class EnemyMovement : MonoBehaviour
             else if (_pathDestValid) Moveto(_pathDestination);
         }
 
+        var speed = (_prevPos - _rb.position) * 1/Time.deltaTime;
+        _activeAnimator.SetFloat("Speed", speed.magnitude);
+        SetDirection(speed.normalized);
         _prevPos = _rb.position;
     }
 
@@ -98,7 +102,6 @@ public class EnemyMovement : MonoBehaviour
         {
             flashlight.rotation = Quaternion.Slerp(flashlight.rotation, Quaternion.Euler(0,0, Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg - 90), 10 * Time.deltaTime);
         }
-        SetDirection(movement);
     }
 
     private IEnumerator OnDestinationArrived(bool observe)
@@ -221,14 +224,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
     
+    private Vector2 _prevDir = Vector2.zero;
     private void SetDirection(Vector2 movement)
     {
         var directions = new [] { Vector2.down, Vector2.right, Vector2.left, Vector2.up, };
         var mindelta = float.PositiveInfinity;
         var dir = Vector2.zero;
-        frontSkeleton.SetActive(false);
-        backSkeleton.SetActive(false);
-        sideSkeleton.SetActive(false);
         foreach (var direction in directions)
         {
             if ((movement - direction).magnitude < mindelta)
@@ -237,18 +238,31 @@ public class EnemyMovement : MonoBehaviour
                 dir = direction;
             }
         }
-        
-        if (dir == Vector2.down) frontSkeleton.SetActive(true);
-        else if (dir == Vector2.up) backSkeleton.SetActive(true);
+        if(dir == _prevDir) return;
+        dir = _prevDir;
+        frontSkeleton.SetActive(false);
+        backSkeleton.SetActive(false);
+        sideSkeleton.SetActive(false);
+        if (dir == Vector2.down)
+        {
+            frontSkeleton.SetActive(true);
+            _activeAnimator = frontSkeleton.GetComponent<Animator>();
+        }
+        else if (dir == Vector2.up)
+        {
+            backSkeleton.SetActive(true);
+            _activeAnimator = backSkeleton.GetComponent<Animator>();
+        }
         else if (dir == Vector2.left)
         {
-            //Debug.Log("Left active");
             sideSkeleton.SetActive(true);
+            _activeAnimator = sideSkeleton.GetComponent<Animator>();
             sideSkeleton.transform.localScale = new Vector3(1,1);
         }
         else
         {
             sideSkeleton.SetActive(true);
+            _activeAnimator = sideSkeleton.GetComponent<Animator>();
             sideSkeleton.transform.localScale = new Vector3(-1,1);
         }
     }

@@ -28,12 +28,7 @@ public class UIController : MonoBehaviour
     public AudioClip winMusic;
     public AudioMixer mixer;
 
-
-    private void Awake()
-    {
-        MapUI.ClearInstances();
-    }
-
+    
     private void OnEnable()
     {
         if (Instance != null) Destroy(Instance.gameObject);
@@ -44,6 +39,7 @@ public class UIController : MonoBehaviour
     {
         mixer.SetFloat("FightSound", 0);
         _menuTabs = menuUI.GetComponent<TabUI>();
+        _menuTabs.Init();
         deathUI.SetActive(false);
         hungerSlider.maxValue = vitals.hunger;
         infectionSlider.maxValue = vitals.infection;
@@ -87,11 +83,6 @@ public class UIController : MonoBehaviour
 
     public void Death()
     {
-        foreach (var mission in MissionManager.Instance.missions)
-        {
-            mission.ResetProgress();
-        }
-        MapUI.ClearInstances();
         deathUI.SetActive(true);
         var source = GetComponent<AudioSource>();
         source.clip = loseClip;
@@ -103,6 +94,10 @@ public class UIController : MonoBehaviour
     }
     public void Victory()
     {
+        foreach (var mission in MissionManager.Instance.missions)
+        {
+            mission.ResetProgress();
+        }
         victoryUI.SetActive(true);
         var source = GetComponent<AudioSource>();
         source.clip = winClip;
@@ -121,7 +116,7 @@ public class UIController : MonoBehaviour
 
     public void Respawn()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         InputHandler.DisableInput = false;
     }
     

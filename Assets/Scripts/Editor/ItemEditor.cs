@@ -12,6 +12,7 @@ namespace Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("icon"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("type"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("useClip"));
             switch (serializedObject.FindProperty("type").intValue)
             {
                 case 0:
