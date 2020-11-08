@@ -21,7 +21,7 @@ namespace Environment
         public Transform waypoints;
         private Transform[] _waypointArray;
         public Mission mission;
-        public bool complete;
+        public bool destroyOnComplete = true;
         private int _totalCount;
         public int destroyed = 0;
 
@@ -43,8 +43,7 @@ namespace Environment
 
         private void Update()
         {
-            complete = Complete;
-            if (Complete)
+            if (Complete && destroyOnComplete)
             {
                 GetComponent<AudioSource>().Stop();
                 if(mission != null)
