@@ -121,7 +121,7 @@ MonoBehaviour:
   globalInteriorLight: {fileID: 3579423210556580828}
   globalExteriorLight: {fileID: 2122329700119758121}
   interiorLightIntensity: 0.7
-  dayCycleSpeed: 1
+  dayCycleSpeed: 0.01
   dayCycleFunction:
     serializedVersion: 2
     m_Curve:
@@ -7352,7 +7352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3434755785258546372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.8133545, y: 7.3622007, z: 0}
+  m_LocalPosition: {x: -24.24, y: 6.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 644066804619737559}
@@ -18448,7 +18448,8 @@ MonoBehaviour:
         m_MethodName: BeginDialogue
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 11400000, guid: 5529871fec9f60d4191449824efd4245,
+            type: 2}
           m_ObjectArgumentAssemblyTypeName: Dialogues.Dialogue, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
