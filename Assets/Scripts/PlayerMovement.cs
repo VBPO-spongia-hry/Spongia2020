@@ -28,7 +28,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         SetFlashlight();
-        if(InputHandler.DisableInput) return;
+        if(InputHandler.DisableInput)
+        {
+            _activeAnimator.SetFloat("Speed", 0);
+            return;
+        }
         _rb.velocity = Vector2.zero;
         _rb.MovePosition(_rb.position + Velocity);
         var direction = InputHandler.GetMovement().normalized;

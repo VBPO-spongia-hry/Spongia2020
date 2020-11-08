@@ -83,6 +83,10 @@ public class UIController : MonoBehaviour
 
     public void Death()
     {
+        foreach (var mission in MissionManager.Instance.missions)
+        {
+            mission.ResetProgress();
+        }
         deathUI.SetActive(true);
         var source = GetComponent<AudioSource>();
         source.clip = loseClip;

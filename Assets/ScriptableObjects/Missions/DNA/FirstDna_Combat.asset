@@ -18,6 +18,7 @@ MonoBehaviour:
   itemName: 
   autoUnlock: 1
   needToUnlock:
-  - {fileID: 11400000, guid: eccd76dd931f35458ae4f2795de6b896, type: 2}
+  - {fileID: 11400000, guid: 01b4bfe010f2da99d85255c5b44c04a4, type: 2}
   locationName: Cemetery
   completion: 1
+  dialogueOnComplete: {fileID: 0}

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Dialogues;
 using Environment;
 using Items;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Missions
         public Mission[] needToUnlock;
         public string locationName;
         public int completion;
+        public Dialogue dialogueOnComplete;
         [NonSerialized] private int _progress = 0;
 
         public void UpdateProgress()

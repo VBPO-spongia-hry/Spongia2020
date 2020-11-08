@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1e6d37e6c3f91b8b97f3fa06b0b569d, type: 2}
   locationName: Laboratory Hub
   completion: 1
+  dialogueOnComplete: {fileID: 11400000, guid: bbb6f7bdf3590b91f816d0d71955fd67, type: 2}
