@@ -19,6 +19,8 @@ namespace Environment
         private bool _mapDisabled = false;
         private bool _firstTravel = true;
         public Mission[] powerMissions;
+        private AudioSource _audioSource;
+        public AudioClip[] musicClips;
         public static bool Disable
         {
             get => Instance._mapDisabled;
@@ -33,6 +35,7 @@ namespace Environment
                 if(location != current) location.gameObject.SetActive(false);
             }
 
+            _audioSource = GetComponent<AudioSource>();
             MapUI.Instances = mapUis.ToList();
         }
         private void Awake()
@@ -103,6 +106,15 @@ namespace Environment
             }
             powerMissions[i].Unlock();
             PowerSwitch.Mission = powerMissions[i];
+        }
+
+        private void Update()
+        {
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.clip = musicClips[Random.Range(0, musicClips.Length)];
+                _audioSource.Play();
+            }
         }
     }
 }

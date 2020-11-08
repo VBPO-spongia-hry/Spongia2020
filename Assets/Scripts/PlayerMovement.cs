@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         if (Camera.main != null) _camera = Camera.main.transform;
         _camera.position = transform.position;
+        _activeAnimator = frontSkeleton.GetComponent<Animator>();
     }
 
     private void Update()
