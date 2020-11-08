@@ -121,7 +121,7 @@ namespace Items
 
         public bool CanAddItem(Item item)
         {
-            if (item.type != ItemType.Other)
+            if (item.type != ItemType.Other && item.type != ItemType.PowerUp)
             {
                 return Capacity >= item.spaceRequired + Usage && !ContainsItem(item.name);
             }

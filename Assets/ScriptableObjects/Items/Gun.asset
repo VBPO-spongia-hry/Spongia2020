@@ -16,7 +16,7 @@ MonoBehaviour:
   useClip: {fileID: 0}
   description: Your ranged weapon
   icon: {fileID: 21300000, guid: 67618433ba3975c0a8f90bb044a2dfea, type: 3}
-  spaceRequired: 10
+  spaceRequired: 15
   type: 1
   damage: 10
   fireRate: 0.5

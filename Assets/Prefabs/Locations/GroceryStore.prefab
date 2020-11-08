@@ -180,7 +180,7 @@ MonoBehaviour:
   globalInteriorLight: {fileID: 2069388682468790604}
   globalExteriorLight: {fileID: 5119122981373485611}
   interiorLightIntensity: 0.7
-  dayCycleSpeed: 1
+  dayCycleSpeed: 0.01
   dayCycleFunction:
     serializedVersion: 2
     m_Curve:
@@ -9901,7 +9901,7 @@ GameObject:
   m_Layer: 0
   m_Name: ItemGenerator
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9936,14 +9936,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dae02a6805028113090c0d93efdc2c3b, type: 2}
   - {fileID: 11400000, guid: 11b12f23b763d2cd6ab72ec440c1f8d6, type: 2}
   - {fileID: 11400000, guid: adbcaa1ef602e4bdab715fa425dee7a7, type: 2}
+  - {fileID: 11400000, guid: 233053c7e984d2e42ba09d00cf916ef7, type: 2}
   maxItemCount: 10
   generationTime: 5
   bounds:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 4.73
-    height: 2.16
+    width: 10
+    height: 5
   itemPrefab: {fileID: 8779792420064780357, guid: 966d307907b30d986bfd1841e9d641af,
     type: 3}
 --- !u!1 &3434755785258546372

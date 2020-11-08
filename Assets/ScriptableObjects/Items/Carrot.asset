@@ -16,7 +16,7 @@ MonoBehaviour:
   useClip: {fileID: 8300000, guid: edfa8c70ee3affba199f8f2ad2047268, type: 3}
   description: +5 hunger
   icon: {fileID: 21300000, guid: 4fa7afe54ab4cfe43b08101d385c8cce, type: 3}
-  spaceRequired: 10
+  spaceRequired: 3
   type: 4
   damage: 0
   fireRate: 0

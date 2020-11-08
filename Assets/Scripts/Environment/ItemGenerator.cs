@@ -1,6 +1,5 @@
 using System;
 using Items;
-using TreeEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,7 +28,8 @@ namespace Environment
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawWireCube(bounds.center, bounds.size);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(new Vector3(bounds.center.x, bounds.center.y, 0), new Vector3(bounds.width, bounds.height,1));
         }
     }
 }

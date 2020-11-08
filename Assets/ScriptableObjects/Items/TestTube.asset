@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TestTube
   m_EditorClassIdentifier: 
   itemName: Test Tube
+  useClip: {fileID: 0}
   description: Description
   icon: {fileID: 21300000, guid: ecd0afa107f7cd018a5dabaa434feac1, type: 3}
-  spaceRequired: 10
+  spaceRequired: 1
   type: 5
   damage: 5
   fireRate: 5

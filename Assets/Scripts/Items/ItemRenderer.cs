@@ -43,6 +43,14 @@ namespace Items
             }
         }
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                if (PlayerMovement._interactable == null) PlayerMovement._interactable = this;
+            }
+        }
+
         private void OnMouseEnter()
         {
             if (IsInteractable)
