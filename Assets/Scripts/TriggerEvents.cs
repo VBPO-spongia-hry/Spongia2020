@@ -32,6 +32,18 @@ public class TriggerEvents : MonoBehaviour
         }
         mission.UpdateProgress();
     }
+
+    public void UpdateMissionProgressWithDialogue(Mission mission, Dialogue dialogue)
+    {
+        if (!mission.Unlocked)
+        {
+            _enterTriggered = false;
+            _exitTriggered = false;
+            return;
+        }
+        mission.UpdateProgress();
+        DialogueManager.Singleton.BeginDialogue(dialogue);
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
