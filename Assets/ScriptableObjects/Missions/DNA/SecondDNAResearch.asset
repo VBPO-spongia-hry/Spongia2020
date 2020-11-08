@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bfaa0caf0e49e7baa449bd3e52746b, type: 3}
+  m_Name: SecondDNAResearch
+  m_EditorClassIdentifier: 
+  type: 0
+  missionName: Get the DNA
+  description: Get the DNA into your inventory
+  itemName: Real DNA
+  autoUnlock: 1
+  needToUnlock:
+  - {fileID: 11400000, guid: d8ef31c7e3713d1c0b9e980871c2a7aa, type: 2}
+  locationName: Cemetery
+  completion: 1

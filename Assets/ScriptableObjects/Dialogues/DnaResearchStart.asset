@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
+  m_Name: DnaResearchStart
+  m_EditorClassIdentifier: 
+  messages:
+  - msg: 'Hi! I am Luigi, a DNA researcher. '
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
+  - msg: I would need you to get em some DNA that isn't infected by the virus, so
+      I can start devbeloping a vaccine.
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
+  - msg: But where am I supposed to find that? There isn't any healthy person in
+      the whole world!
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: You must find it in the cemetery. The DNA from dead people is can also be
+      used.
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
+  - msg: Great! So I am going to the cemetery to get it
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
+  - msg: But be careful! There are many enemies in the cemetery. I recommend you
+      to have a ranged weapon. You can craft it in hardware store.
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: 4c9dfce55c83e6b7886e10e4e5fc9328, type: 2}
