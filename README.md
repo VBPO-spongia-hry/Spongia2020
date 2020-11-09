@@ -1,7 +1,7 @@
 # Spongia 2020
-Vsetky zdrojaky, zvuky a obrazky su v priecinku Assets
-Hra sa nachadza v priecinkoch Build-Windows.zip a Build-Linux.zip - odzipuj a spusti
-Screenshoty su zase v priecinku screenshots
+Vsetky zdrojaky, zvuky a obrazky su v priecinku [Assets](Assets)
+Hra sa nachadza v pre linux [tu](https://drive.google.com/file/d/1N3U7rEZd4lM_CI7kTzWZmH-tbdZZ77oU/view?usp=sharing) a pre windows [tu]() - odzipuj a spusti
+Screenshoty su zase v priecinku [screenshots](Screenshots)
 ## Spongia-info
 - menotimu: !.+?
 - meno hry: Pandemic 3000
