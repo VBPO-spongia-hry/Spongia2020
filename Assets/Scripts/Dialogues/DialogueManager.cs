@@ -126,10 +126,12 @@ namespace Dialogues
             updating.text = "";
             if (_character1 == msg.character)
             {
+                character1.transform.GetChild(1).gameObject.SetActive(_character1.emotions[msg.emotionIndex] != null);
                 character1.transform.GetChild(1).GetComponent<Image>().sprite = _character1.emotions[msg.emotionIndex];
             }
             else
             {
+                character2.transform.GetChild(1).gameObject.SetActive(_character2.emotions[msg.emotionIndex] != null);
                 character2.transform.GetChild(1).GetComponent<Image>().sprite = _character2.emotions[msg.emotionIndex];
             }
             yield return new WaitUntil(() => dialogueAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Shown"));
