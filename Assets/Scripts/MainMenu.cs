@@ -100,7 +100,7 @@ public class MainMenu : MonoBehaviour
         SettingsAnim.Play("Hide");
         Animation.Play("Show");
         Screen.SetResolution(resolution.x, resolution.y, fullscreen.isOn);
-        MainText.SetText("Naval Transport Simulator");
+        MainText.SetText("Pandemic 3000");
         ChangeVolume();
         SaveData saveData = GetSaveData();
         GameSaver.Savegame(saveData);

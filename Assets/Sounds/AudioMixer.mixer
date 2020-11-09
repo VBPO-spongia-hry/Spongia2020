@@ -87,9 +87,9 @@ AudioMixerController:
   - guid: 7e89905b2507306a7b2e5cec4ca6caa5
     name: FightSound
   - guid: d7a1fcddd24d4cf3c98d31ff394657fe
-    name: Music
-  - guid: 4b2c39c19024771c185366eadd85a6c6
     name: SFX
+  - guid: 4b2c39c19024771c185366eadd85a6c6
+    name: Music
   m_AudioMixerGroupViews:
   - guids:
     - 767484c9422d5f592a93cbc80b71f3ba
