@@ -85,10 +85,9 @@ namespace Environment
 
         private IEnumerator PowerOutageController()
         {
-            Debug.Log("outage triggered");
             for (int i = 0; i < powerMissions.Length; i++)
             {
-                yield return new WaitForSeconds(Random.Range(300,400));
+                yield return new WaitForSeconds(Random.Range(150,250));
                 TriggerPowerOutage(i);
                 yield return new WaitUntil(()=>powerMissions[i].Complete);
                 foreach (var location in locations)

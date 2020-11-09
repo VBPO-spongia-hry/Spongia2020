@@ -1287,6 +1287,8 @@ MonoBehaviour:
   travelText: {fileID: 907703598}
   powerMissions:
   - {fileID: 11400000, guid: 9852aea07a3be57f2a9a11bad6e2fdca, type: 2}
+  - {fileID: 11400000, guid: 22f8b23b0b0962d028c52dcec2901462, type: 2}
+  - {fileID: 11400000, guid: 7e0075669c8a49396ad677f7a194f97e, type: 2}
   musicClips:
   - {fileID: 8300000, guid: bb5f147b0924fbb899cc31b430d127a8, type: 3}
   - {fileID: 8300000, guid: 88582be8051179abe8797e2c853f8816, type: 3}
@@ -1334,6 +1336,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d1c7e873be7efa01f9b9d35fd348c245, type: 2}
   - {fileID: 11400000, guid: 56617eeefd59a38a08ca8b1f11a1ea02, type: 2}
   - {fileID: 11400000, guid: 04385087d280e4f7cbcf7c3fac15eaa6, type: 2}
+  - {fileID: 11400000, guid: 7e0075669c8a49396ad677f7a194f97e, type: 2}
+  - {fileID: 11400000, guid: 22f8b23b0b0962d028c52dcec2901462, type: 2}
+  - {fileID: 11400000, guid: 6aabacfffda19ecdb8502e2ffcdf3f82, type: 2}
+  - {fileID: 11400000, guid: a0714e332e78a7ba190956332e51300f, type: 2}
+  - {fileID: 11400000, guid: f4a7546ddf756cb9fbc652c34bd33bb4, type: 2}
+  - {fileID: 11400000, guid: 6cbca2a513255d583a7e36160020a2d1, type: 2}
+  - {fileID: 11400000, guid: bbec83f7ac7f8f820870d8051432823c, type: 2}
+  - {fileID: 11400000, guid: 6c99669de47b655f095e30f71f29705d, type: 2}
   unlockAnim: {fileID: 6523557314021600130}
   unlockHeader: {fileID: 6523557314021600129}
   unlockContent: {fileID: 6523557314021600128}
@@ -1656,6 +1666,11 @@ PrefabInstance:
       propertyPath: backSkeleton
       value: 
       objectReference: {fileID: 181617584}
+    - target: {fileID: 4313322338440710196, guid: bf5bff1c06b9129d7aecb0ad5a024214,
+        type: 3}
+      propertyPath: playerSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4313322338440710197, guid: bf5bff1c06b9129d7aecb0ad5a024214,
         type: 3}
       propertyPath: m_Name
@@ -1717,6 +1732,16 @@ PrefabInstance:
       propertyPath: hitClip
       value: 
       objectReference: {fileID: 8300000, guid: dce0d4175ce991156a3eda83766a7e04, type: 3}
+    - target: {fileID: 4313322338440710207, guid: bf5bff1c06b9129d7aecb0ad5a024214,
+        type: 3}
+      propertyPath: foodConsumptionRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313322338440710207, guid: bf5bff1c06b9129d7aecb0ad5a024214,
+        type: 3}
+      propertyPath: hunger
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf5bff1c06b9129d7aecb0ad5a024214, type: 3}
 --- !u!1001 &4413136542385233487
