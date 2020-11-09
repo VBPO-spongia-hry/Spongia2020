@@ -40,6 +40,7 @@ namespace Missions
 
         public void CheckComplete()
         {
+            if(!Unlocked) return;
             switch (type)
             {
                 case MissionType.Inventory:
