@@ -21,4 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4a7546ddf756cb9fbc652c34bd33bb4, type: 2}
   locationName: Town Hall
   completion: 1
-  dialogueOnComplete: {fileID: 0}
+  dialogueOnComplete: {fileID: 11400000, guid: 2d7794893949bc2499992ba10961d94c, type: 2}

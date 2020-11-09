@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae71d9923bda4a75ba461416556c0fa8, type: 3}
-  m_Name: Office worker
+  m_Name: Legal Manager
   m_EditorClassIdentifier: 
-  baseImage: {fileID: -5426685777811653510, guid: 9c023586872ebe8428a0c76fed5e45bd,
+  baseImage: {fileID: 8177766351640107600, guid: 51d54203857aade409237ba5a1e7ebf2,
     type: 3}
-  characterName: Jessica
-  job: ofiice worker
+  characterName: John
+  job: Legal Manager
   emotions:
-  - {fileID: -6643977368478943233, guid: b1ababc3e303c3e6c962143a5ff6e401, type: 3}
+  - {fileID: 3955357241181106581, guid: f3767f6a025f84dd1b7cdbfd427437d0, type: 3}
+  - {fileID: -72896591797788411, guid: f3767f6a025f84dd1b7cdbfd427437d0, type: 3}
+  - {fileID: 7189179121267124948, guid: f3767f6a025f84dd1b7cdbfd427437d0, type: 3}

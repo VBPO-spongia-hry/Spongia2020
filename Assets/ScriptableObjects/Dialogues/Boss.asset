@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71d9923bda4a75ba461416556c0fa8, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  baseImage: {fileID: 0}
+  baseImage: {fileID: -3676937775901542125, guid: cfe81a8e65cfd9e4ca3a746271c4cfdd,
+    type: 3}
   characterName: Richard
   job: boss
-  emotions: []
+  emotions:
+  - {fileID: -7739722896366016360, guid: a2710a01be10bda8e8bde6bb0e1e3bc2, type: 3}

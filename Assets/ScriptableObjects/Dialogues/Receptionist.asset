@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71d9923bda4a75ba461416556c0fa8, type: 3}
   m_Name: Receptionist
   m_EditorClassIdentifier: 
-  baseImage: {fileID: 7729539529392886483, guid: b1ababc3e303c3e6c962143a5ff6e401,
+  baseImage: {fileID: -3283649562927650416, guid: 5d8d15cc14b5dda44accaa5195377856,
     type: 3}
   characterName: Lisa
   job: the receptionist
-  emotions: []
+  emotions:
+  - {fileID: 7729539529392886483, guid: b1ababc3e303c3e6c962143a5ff6e401, type: 3}

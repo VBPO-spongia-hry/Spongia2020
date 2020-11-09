@@ -16,4 +16,4 @@ MonoBehaviour:
   - msg: I am sorry, but you need a permission from the Townhall for the vaccine.
       Good luck!
     emotionIndex: 0
-    character: {fileID: 11400000, guid: 4d896c485f611f440b9bdcc4cdaf03a8, type: 2}
+    character: {fileID: 11400000, guid: bc7338afc18a88281baab6c28884ac46, type: 2}
