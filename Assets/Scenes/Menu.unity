@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 202867553bbdc8749b5866bbbacba312,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -219,7 +219,7 @@ MonoBehaviour:
   MessageText: {fileID: 1751705808}
   fullscreen: {fileID: 1460569996}
   texts:
-  - The pandemic has takne over the world
+  - The pandemic has taken over the world
   - Everyone is dying ...
   - Only rescue is to develop a vaccine
   - But the scientists are scared of walking outside
