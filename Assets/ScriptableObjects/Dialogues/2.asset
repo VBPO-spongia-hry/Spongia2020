@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec3901ad2b0412b997ed55e749cbd17, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  messages:
+  - msg: Oh! You are so nice. I love chocolate!
+    emotionIndex: 0
+    character: {fileID: 11400000, guid: e358298cdbfb0b242b055ecc0a274730, type: 2}
+  - msg: But I can't help you. That is too much responsibility for me to give you
+      this permission. You have to visit my boss.
+    emotionIndex: -1
+    character: {fileID: 11400000, guid: e358298cdbfb0b242b055ecc0a274730, type: 2}
