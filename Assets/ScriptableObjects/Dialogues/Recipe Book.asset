@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseImage: {fileID: 21300000, guid: af665fe0befdd60429f8d23a0666402a, type: 3}
   characterName: Recipes
-  job: book, where you find all crafting recipes
+  job: 
   emotions:
   - {fileID: 0}
