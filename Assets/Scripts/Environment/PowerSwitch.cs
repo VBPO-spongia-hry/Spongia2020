@@ -7,6 +7,8 @@ namespace Environment
     public class PowerSwitch : MonoBehaviour,IInteractable
     {
         [NonSerialized] public static Mission Mission;
+        public Sprite on;
+        public Sprite off;
         
         public void SetInteracting()
         {
@@ -18,9 +20,21 @@ namespace Environment
             return;
         }
 
+        private void Update()
+        {
+            if (GetComponentInParent<MapLocation>().hasPower)
+            {
+                GetComponent<SpriteRenderer>().sprite = on;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = off;
+            }
+        }
+
         public void Interact()
         {
-            Mission.UpdateProgress();
+            if(Mission != null) Mission.UpdateProgress();
         }
         
         private void OnTriggerEnter2D(Collider2D other)

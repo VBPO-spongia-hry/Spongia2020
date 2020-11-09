@@ -23,7 +23,7 @@ namespace Environment
         public AnimationCurve dayCycleFunction;
         [NonSerialized] public bool IsInInterior;
         private float _timer;
-        private bool _hasPower;
+        public bool hasPower;
         public Light2D ActiveGlobalLight
         {
             get => IsInInterior ? globalInteriorLight : globalExteriorLight;
@@ -31,7 +31,7 @@ namespace Environment
 
         public void TurnOnPower()
         {
-            _hasPower = true;
+            hasPower = true;
         }
 
         private void Start()
@@ -69,7 +69,7 @@ namespace Environment
             }
             else
             {
-                if(_hasPower) globalInteriorLight.intensity = interiorLightIntensity;
+                if(hasPower) globalInteriorLight.intensity = interiorLightIntensity;
             }
         }
 
@@ -104,7 +104,7 @@ namespace Environment
 
         public void TurnOffPower()
         {
-            _hasPower = false;
+            hasPower = false;
             if(isActiveAndEnabled) StartCoroutine(PowerOutage());
             else globalInteriorLight.intensity = .01f;
         }
