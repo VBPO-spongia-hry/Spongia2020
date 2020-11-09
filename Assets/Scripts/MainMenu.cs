@@ -21,6 +21,11 @@ public class MainMenu : MonoBehaviour
     public Slider SFXSlider;
     public Text MessageText;
     public Toggle fullscreen;
+    [Header("Start Anim Settings")] 
+    public string[] texts;
+    public Animation textShow;
+    public TextMeshProUGUI showText;
+    public Animation backgroundShow;
 
     private string _message;
     public string Message {
@@ -105,7 +110,7 @@ public class MainMenu : MonoBehaviour
     {
         HowToPlayAnim.Play("Hide");
         Animation.Play("Show");
-        MainText.SetText("Naval Transport Simulator");
+        MainText.SetText("Pandemic 3000");
         Action = action.none;
     }
 
@@ -116,7 +121,7 @@ public class MainMenu : MonoBehaviour
             case action.singleplayer:
                 // MultiplayerAnim.Play("Show");
                 // MainText.SetText("Create Game");
-                SceneManager.LoadScene(1);
+                StartCoroutine(GameStart());
                 break;
             case action.Howtoplay:
                 HowToPlayAnim.Play("Show");
@@ -132,6 +137,19 @@ public class MainMenu : MonoBehaviour
                 break;
         }
         Action = action.none;
+    }
+
+    private IEnumerator GameStart()
+    {
+        backgroundShow.Play("ShowBackground");
+        yield return new WaitWhile(() => backgroundShow.isPlaying);
+        foreach (var text in texts)
+        {
+            showText.SetText(text);
+            textShow.Play("ShowText");
+            yield return new WaitWhile(()=>textShow.isPlaying);
+        }
+        SceneManager.LoadScene(1);
     }
 
     public void dropDownChanged()

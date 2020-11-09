@@ -25,7 +25,7 @@ MonoBehaviour:
     emotionIndex: 0
     character: {fileID: 11400000, guid: bee32d9fd7dd275fa8d9513bd6d01d1a, type: 2}
   - msg: You must find it in the cemetery. The DNA from dead people is can also be
-      used.
+      used. But be careful, because you can travel only from one corner of the cemetery.
     emotionIndex: 0
     character: {fileID: 11400000, guid: 4d896c485f611f440b9bdcc4cdaf03a8, type: 2}
   - msg: Great! So I am going to the cemetery to get it
