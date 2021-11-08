@@ -1,13 +1,13 @@
 {
 	"name": "Pandemic 3000",
 	"icon": "P",
-	"description": "https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/master/README.md",
+	"description": "https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/main/README.md",
 	"version": "1.0.0",
 	"screenshots": [
-		"https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/master/Screenshots/Screenshot%20from%202020-11-09%2011-47-03.png",
-		"https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/master/Screenshots/Screenshot%20from%202020-11-09%2011-48-44.png",
-    "https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/master/Screenshots/Screenshot%20from%202020-11-09%2011-49-05.png",
-    "https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/master/Screenshots/Screenshot%20from%202020-11-09%2011-49-42.png"
+		"https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/main/Screenshots/Screenshot%20from%202020-11-09%2011-47-03.png",
+		"https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/main/Screenshots/Screenshot%20from%202020-11-09%2011-48-44.png",
+    "https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/main/Screenshots/Screenshot%20from%202020-11-09%2011-49-05.png",
+    "https://raw.githubusercontent.com/VBPO-spongia-hry/Spongia2020/main/Screenshots/Screenshot%20from%202020-11-09%2011-49-42.png"
 	],
 	"trailer": "https://youtube.com/embed/NAFEw7Qcbsg",
 	"downloads": {
